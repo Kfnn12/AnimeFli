@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as ArrowRight } from "../../assets/icons/caretRight.svg";
 import { ReactComponent as ArrowLeft } from "../../assets/icons/caretLeft.svg";
 import { styled } from "twin.macro";
+import axios from "axios";
+import MovieCard from "../MovieCard/MovieCard";
 interface RowProps {
   title: string;
-  rowID: number
+  rowID: number;
+  fetchURL: string;
 }
 
 export default function Row(props: React.PropsWithChildren<RowProps>) {
+  const [movies, setMovies] = useState<any>([]);
+
+  useEffect(() => {
+    if (props.fetchURL != undefined) {
+      axios.get(props?.fetchURL).then((response) => {
+        setMovies(response.data.results);
+      });
+    }
+  }, [props.fetchURL]);
+  console.log(movies);
+
   const slideLeft = () => {
     var slider: any = document.getElementById("slider" + props.rowID);
     slider.scrollLeft = slider?.scrollLeft - 290;
@@ -33,7 +47,9 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
           tw="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth  relative"
         >
           <div tw="w-full h-full ml-[18px]  whitespace-nowrap scroll-smooth  relative">
-            {props.children}
+            {movies?.map((movie: any, idx: number) => (
+              <MovieCard key={idx} movieDetails={movie} />
+            ))}
           </div>
         </div>
         <button

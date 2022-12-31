@@ -9,12 +9,20 @@ interface MovieCardProps {
   image?: string;
   rating?: string;
 }
-export default function MovieCard(props: MovieCardProps) {
+export default function MovieCard({movieDetails}: any) {
+  var mainTitle;
+  if (movieDetails){
+    if(movieDetails.title){
+      mainTitle = movieDetails.title
+    }
+    else mainTitle = movieDetails.name
+  }
   return (
     <div tw="inline-block ">
       <MovieCardWrapper>
-        <img src={props.image} alt="alt" />
-        <div className="bottom">
+        <img src={`https://image.tmdb.org/t/p/w500/${movieDetails?.poster_path}`} alt="alt" />
+        
+        {/* <div tw="hidden" className="bottom">
           <div tw="flex gap-2">
             <button tw="w-[30px] text-white rounded-[11px] bg-[#D22F27] h-[30px]">
               <PlayIcon tw="w-[10px] h-[10px]" />
@@ -26,12 +34,12 @@ export default function MovieCard(props: MovieCardProps) {
 
           <div tw="text-[7px] flex flex-col gap-1">
             <div>
-              <p tw="text-[16px]">{props.title}</p>
+              <p tw="text-[16px]">{movieDetails?.original_title}</p>
             </div>
-            <p>{props.rating}</p>
+            <p>{movieDetails?.rating}</p>
             <p>Exciting | Adventure</p>
           </div>
-        </div>
+        </div> */}
       </MovieCardWrapper>
     </div>
   );
