@@ -4,6 +4,7 @@ import { ReactComponent as ArrowLeft } from "../../assets/icons/caretLeft.svg";
 import { styled } from "twin.macro";
 import axios from "axios";
 import MovieCard from "../MovieCard/MovieCard";
+import AnimeCard from "../AnimeCard/AnimeCard";
 interface RowProps {
   title: string;
   rowID: number;
@@ -15,9 +16,9 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
 
   useEffect(() => {
     if (props.fetchURL != undefined) {
-      axios.get(props?.fetchURL).then((response) => {
-        setMovies(response.data.results);
-      });
+      fetch("https://gogoanime.consumet.org/recent-release")
+        .then((response) => response.json())
+        .then((animelist) => setMovies(animelist));
     }
   }, [props.fetchURL]);
   console.log(movies);
@@ -47,8 +48,8 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
           tw="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth  relative"
         >
           <div tw="w-full h-full ml-[18px]  whitespace-nowrap scroll-smooth  relative">
-            {movies?.map((movie: any, idx: number) => (
-              <MovieCard key={idx} movieDetails={movie} />
+            {movies?.map((anime: any, idx: number) => (
+              <AnimeCard key={idx} anime={anime} />
             ))}
           </div>
         </div>

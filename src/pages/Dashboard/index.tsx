@@ -11,7 +11,7 @@ export default function Dashboard() {
         <HeroPoster />
       </section>
       <TrendingNow/>
-      {/* <Popular/> */}
+      <Popular/>
     </main>
   );
 }

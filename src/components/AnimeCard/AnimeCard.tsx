@@ -1,7 +1,7 @@
 import "twin.macro";
 import Image from "../../assets/images/337745.jpeg";
 import { ReactComponent as PlayIcon } from "../../assets/icons/play.svg";
-import { MovieCardWrapper } from "./style";
+import { EpisodeCardWrapper } from "./style";
 
 interface MovieCardProps {
   title?: string;
@@ -9,19 +9,16 @@ interface MovieCardProps {
   image?: string;
   rating?: string;
 }
-export default function MovieCard({movieDetails}: any) {
-  var mainTitle;
-  if (movieDetails){
-    if(movieDetails.title){
-      mainTitle = movieDetails.title
-    }
-    else mainTitle = movieDetails.name
-  }
+export default function AnimeCard({ anime }: any) {
+
   return (
     <div tw="inline-block ">
-      <MovieCardWrapper>
-        <img src={movieDetails.animeImg} alt="alt" />
-        
+      <EpisodeCardWrapper>
+        <img
+          src={anime.animeImg}
+          alt="alt"
+        />
+
         {/* <div tw="hidden" className="bottom">
           <div tw="flex gap-2">
             <button tw="w-[30px] text-white rounded-[11px] bg-[#D22F27] h-[30px]">
@@ -40,7 +37,7 @@ export default function MovieCard({movieDetails}: any) {
             <p>Exciting | Adventure</p>
           </div>
         </div> */}
-      </MovieCardWrapper>
+      </EpisodeCardWrapper>
     </div>
   );
 }
