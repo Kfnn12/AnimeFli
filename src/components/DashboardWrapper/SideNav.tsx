@@ -24,7 +24,7 @@ export default function SideNav() {
               clipRule="evenodd"
             />
           </svg>
-          <p>Exxmon<span tw="text-red-300">.</span></p>
+          <p>Exxmon<span tw="text-red">.</span></p>
           
         </Link>
       </div>

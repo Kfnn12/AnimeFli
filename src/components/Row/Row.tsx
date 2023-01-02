@@ -5,6 +5,7 @@ import { styled } from "twin.macro";
 import axios from "axios";
 import MovieCard from "../MovieCard/MovieCard";
 import AnimeCard from "../AnimeCard/AnimeCard";
+import EpisodeModal from "../EpisodeModal/EpisodeModal";
 interface RowProps {
   title: string;
   rowID: number;
@@ -13,15 +14,16 @@ interface RowProps {
 
 export default function Row(props: React.PropsWithChildren<RowProps>) {
   const [movies, setMovies] = useState<any>([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (props.fetchURL != undefined) {
-      fetch("https://gogoanime.consumet.org/recent-release")
+      fetch(props.fetchURL)
         .then((response) => response.json())
         .then((animelist) => setMovies(animelist));
     }
   }, [props.fetchURL]);
-  console.log(movies);
+  // console.log(movies);
 
   const slideLeft = () => {
     var slider: any = document.getElementById("slider" + props.rowID);
@@ -49,7 +51,7 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
         >
           <div tw="w-full h-full ml-[18px]  whitespace-nowrap scroll-smooth  relative">
             {movies?.map((anime: any, idx: number) => (
-              <AnimeCard key={idx} anime={anime} />
+              <AnimeCard setIsOpen={setIsOpen} key={idx} anime={anime} />
             ))}
           </div>
         </div>
@@ -60,6 +62,7 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
           <ArrowRight />
         </button>
       </div>
+      
     </Wrapper>
   );
 }

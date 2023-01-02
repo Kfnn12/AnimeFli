@@ -6,6 +6,9 @@ module.exports = {
       backgroundImage: {
         'hero': "url('https://cdnimg.xyz/cover/deep-insanity-the-lost-child.png')",
       },
+      colors: {
+        red: "#D22F27"
+      }
     },
   },
   plugins: [],

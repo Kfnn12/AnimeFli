@@ -1,49 +1,18 @@
 import { styled } from "twin.macro";
 
 export const EpisodeCardWrapper = styled.div`
-  border-radius: 10px;
-  margin: 10px;
+  display: flex;
   flex-direction: column;
-  /* width: 250px;
-  height: 360px; */
-  width: 280px;
-  height: 380px;
-  z-index: 100;
-  border-radius: 12px;
+  margin: 0px 10px;
+  gap: 10px;
   overflow: hidden;
-  transition: transform 0.5s;
+  height: fit-content;
   cursor: pointer;
+  width: 230px;
+  text-align: center;
   img {
-    width: 100%;
-    height: 100%;
+    border-radius: 10px;
+    height: 280px;
   }
-  /* .bottom {
-    display: none;
-    color: #fff;
-    padding: 10px;
-    background-color: gray;
-    button {
-      text-align: center;
-      :hover {
-        opacity: 0.8;
-      }
-    }
-  } */
-  /* :hover {
-    transform: scale(1.1);
-    height: 220px;
-    img {
-      height: 60%;
-    }
-    .bottom {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-  } */
+  
 `;

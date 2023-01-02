@@ -9,6 +9,6 @@ import requests from "../../../utils/requests";
 export default function TrendingNow() {
   
   return (
-    <Row title="Trending" fetchURL={requests.fetchRecents} rowID={0}/>
+    <Row title="Recent Releases" fetchURL={requests.fetchRecents} rowID={0}/>
   );
 }
