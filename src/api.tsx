@@ -52,14 +52,14 @@ export const getAPI = async (url: string, data?: any): Promise<any> => {
     url: `${getConfig.baseUrl}/${url}/${data}`,
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       return {
         status: response.status,
         data: response.data,
       };
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
       return {
         status: error.status,
         data: error.response,

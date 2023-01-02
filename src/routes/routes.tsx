@@ -6,6 +6,7 @@ import SideNav from "../components/DashboardWrapper/SideNav";
 
 const TestPage = React.lazy(() => import("../pages/test"));
 const DashboardPage = React.lazy(() => import("../pages/Dashboard"));
+const PlayerPage = React.lazy(() => import("../pages/Player"));
 
 const routesObject: RouteObject[] = [
   {
@@ -17,8 +18,13 @@ const routesObject: RouteObject[] = [
         path: "/",
         element: <DashboardPage />,
       },
+      {
+        path: "/:id",
+        element: <PlayerPage/>
+      }
     ],
   },
+  
   {
     path: "*",
     element: <h1>404</h1>,
