@@ -6,13 +6,15 @@ export const EpisodeCardWrapper = styled.div`
   margin: 0px 10px;
   gap: 10px;
   overflow: hidden;
-  height: fit-content;
+  /* height: 180px; */
   cursor: pointer;
-  width: 230px;
+  width: 250px;
   text-align: center;
   img {
     border-radius: 10px;
-    height: 280px;
+    width: 250px;
+    height: 200px;
+    /* object-fit: cover; */
   }
   
 `;

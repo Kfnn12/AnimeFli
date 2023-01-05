@@ -37,9 +37,9 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	font-family: 'Poppins', sans-serif;
-	background-color: #FFF;
-	color: #000;
+	font-family: 'Work Sans', sans-serif;
+	background-color: #17181C;
+	color: #f5f5f5;
 	overflow-x: hidden;
 }
 ol, ul {

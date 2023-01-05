@@ -3,25 +3,27 @@ import { RouteObject } from "react-router-dom";
 import DashboardHeader from "../components/DashboardHeader/DashboardHeader";
 import DashboardWrapper from "../components/DashboardWrapper";
 import SideNav from "../components/DashboardWrapper/SideNav";
+import Layout from "../components/Layout/Layout";
 
 const TestPage = React.lazy(() => import("../pages/test"));
 const DashboardPage = React.lazy(() => import("../pages/Dashboard"));
+const LandingPage = React.lazy(() => import("../pages/Landing"));
 const PlayerPage = React.lazy(() => import("../pages/Player"));
 
 const routesObject: RouteObject[] = [
   {
     element: (
-      <DashboardWrapper sideNav={<SideNav />} header={<DashboardHeader />} />
+      <Layout/>
     ),
     children: [
       {
         path: "/",
-        element: <DashboardPage />,
+        element: <LandingPage />,
       },
-      {
-        path: "/:id",
-        element: <PlayerPage/>
-      }
+      // {
+      //   path: "/:id",
+      //   element: <PlayerPage/>
+      // }
     ],
   },
   

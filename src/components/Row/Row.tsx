@@ -6,6 +6,7 @@ import axios from "axios";
 import MovieCard from "../MovieCard/MovieCard";
 import AnimeCard from "../AnimeCard/AnimeCard";
 import EpisodeModal from "../EpisodeModal/EpisodeModal";
+import { H3, H4 } from "../../styles/typography";
 interface RowProps {
   title: string;
   rowID: number;
@@ -18,13 +19,17 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
 
   useEffect(() => {
     if (props.fetchURL != undefined) {
-      fetch(props.fetchURL)
-        .then((response) => response.json())
-        .then((animelist) => setMovies(animelist));
+      axios.get(props.fetchURL).then((response) => {
+        setMovies(response.data);
+      });
+      if (movies) {
+
+      }
     }
+
   }, [props.fetchURL]);
   // console.log(movies);
-
+  
   const slideLeft = () => {
     var slider: any = document.getElementById("slider" + props.rowID);
     slider.scrollLeft = slider?.scrollLeft - 290;
@@ -36,7 +41,8 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
 
   return (
     <Wrapper>
-      <p tw="py-5 mx-[27px] text-[#5A6073] font-medium">{props.title}</p>
+      <H4 tw="mx-[27px] py-2">{props.title}</H4>
+      {/* <p tw="py-5 mx-[27px] text-[#5A6073] font-medium">{props.title}</p> */}
       <div tw="relative">
         <button
           tw="absolute opacity-0 pt-[10px] h-[220px] w-[40px] z-10 left-[0px] bottom-[16px]  rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
@@ -62,14 +68,13 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
           <ArrowRight />
         </button>
       </div>
-      
     </Wrapper>
   );
 }
 
 const Wrapper = styled.section`
   padding: 0;
-  width: 100%;
+  width: 100vw;
   position: relative;
   scroll-behavior: smooth;
   .row {

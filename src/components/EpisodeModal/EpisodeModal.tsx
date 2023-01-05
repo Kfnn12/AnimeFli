@@ -10,24 +10,25 @@ import "twin.macro";
 import { getAPI } from "../../api";
 import { ReactComponent as PlayIcon } from "../../assets/icons/play.svg";
 
-
 export default function EpisodeModal({ anime, setIsOpen }: any) {
   const [animeDetails, setAnimeDetails] = useState<any>([]);
   const navigate = useNavigate();
   const watchAnime = () => {
-    navigate(`${anime?.animeId}`)
+    navigate(`${animeDetails?.episodesList[0].episodeId}`);
   };
 
   useEffect(() => {
     getAPI("anime-details", `${anime.animeId}`).then((res) => {
       if (res.status === 200) {
         setAnimeDetails(res.data);
-        console.log(animeDetails);
+        console.log(animeDetails?.episodesList[0].episodeId)
       } else {
         console.log(res);
       }
     });
   }, []);
+  // console.log(animeDetails);
+
   return (
     <div>
       {createPortal(
@@ -79,7 +80,10 @@ export default function EpisodeModal({ anime, setIsOpen }: any) {
                     </p>
                   </div>
                   <div tw="mt-[20px] flex gap-7">
-                    <button onClick={watchAnime} tw="bg-red flex justify-center gap-2 items-center w-[145px] h-[36px] rounded-[8px] text-white">
+                    <button
+                      onClick={watchAnime}
+                      tw="bg-red flex justify-center gap-2 items-center w-[145px] h-[36px] rounded-[8px] text-white"
+                    >
                       <PlayIcon tw="w-[15px]" />
                       <p>Watch</p>
                     </button>

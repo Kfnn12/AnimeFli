@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "twin.macro";
-import Poster from "../../assets/images/img1.jpg";
-import { HeroPosterWrapper, RandomButton } from "./style";
-import { ReactComponent as PlayIcon } from "../../assets/icons/play.svg";
+import Poster1 from "../../assets/images/chainsawman.jpg";
+import Poster2 from "../../assets/images/onepiece.png";
+import Poster3 from "../../assets/images/naruto.jpg";
+import Poster4 from "../../assets/images/dbz.png";
 import { ReactComponent as ArrowRight } from "../../assets/icons/caretRight.svg";
 import { ReactComponent as ArrowLeft } from "../../assets/icons/caretLeft.svg";
 import { styled } from "twin.macro";
@@ -10,6 +11,7 @@ import { getAPI } from "../../api";
 import SlideshowImages from "./SlideshowImages";
 
 const TOTAL_SLIDES = 3; // n-1 in Array
+const images = [Poster1, Poster2, Poster3, Poster4]
 export default function HeroPoster() {
   const [current, setCurrent] = useState(0);
   const [data, setData] = useState([]);
@@ -51,15 +53,15 @@ export default function HeroPoster() {
       <div className="frame">
         <div className="box-container" ref={ref}>
           {data.map((item, idx) => (
-            <SlideshowImages anime={item} key={idx} />
+            <SlideshowImages image={images} anime={item} key={idx} />
           ))}
         </div>
       </div>
-      <div className="button-container">
+      {/* <div className="button-container">
         <div className="button" onClick={next}>
           <ArrowRight />
         </div>
-      </div>
+      </div> */}
     </Wrapper>
   );
 }

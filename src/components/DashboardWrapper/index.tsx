@@ -1,6 +1,5 @@
 import React from 'react'
 import {Outlet} from "react-router-dom"
-import { styled } from 'twin.macro';
 import { DashboardWrapperContainer } from './styles';
 
 interface Props {

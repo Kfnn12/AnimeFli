@@ -1,12 +1,14 @@
 import "twin.macro"
-import EpisodeModal from "../../components/EpisodeModal/EpisodeModal";
+import Button from "../../components/Button/Button";
+import {ReactComponent as PlayIcon} from "../../assets/icons/play.svg"
 import TrendingNow from "../../components/sections/TrendingNow/TrendingNow";
+import PlayButton from "../../components/Button/PlayButton";
 
 export default function Dashboard() {
   return (
     <main>
       <TrendingNow/>
-      
+      <PlayButton/>
     </main>
   );
 }
