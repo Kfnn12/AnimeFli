@@ -32,13 +32,13 @@ export default function AnimeCard({ anime }: any) {
   // console.log(list);
 
   return (
-    <div tw="inline-block p-2  ">
+    <div tw="inline-block  ">
       <AnimeCardWrapper onClick={() => setIsOpen(true)}>
         <img src={anime.animeImg} alt="alt" />
 
         {list && (
           <div className="overlay">
-            <div tw="h-[30px] truncate whitespace-normal ">
+            <div tw="h-[35px] truncate whitespace-normal ">
               <BodyText tw="text-[17px] text-orange2">
                 {list?.animeTitle}
               </BodyText>

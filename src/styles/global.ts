@@ -9,7 +9,10 @@ const GlobalStyles = css`
    v2.0 | 20110126
    License: none (public domain)
 */
-
+:root{
+  scrollbar-color: rgb(210,210,210) rgb(46,54,69) !important;
+  scrollbar-width: 2px !important;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -41,6 +44,8 @@ body {
 	background-color: #17181C;
 	color: #f5f5f5;
 	overflow-x: hidden;
+	scrollbar-color: #ff8533 white;
+	scrollbar-width: none;
 }
 ol, ul {
 	list-style: none;
@@ -56,6 +61,23 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ff8533;
+	
+  border-radius: 10px;
 }
 `;
 export default GlobalStyles;

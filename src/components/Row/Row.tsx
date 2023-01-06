@@ -23,13 +23,11 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
         setMovies(response.data);
       });
       if (movies) {
-
       }
     }
-
   }, [props.fetchURL]);
   // console.log(movies);
-  
+
   const slideLeft = () => {
     var slider: any = document.getElementById("slider" + props.rowID);
     slider.scrollLeft = slider?.scrollLeft - 290;
@@ -45,7 +43,7 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
       {/* <p tw="py-5 mx-[27px] text-[#5A6073] font-medium">{props.title}</p> */}
       <div tw="relative">
         <button
-          tw="absolute opacity-0 pt-[10px] h-[220px] w-[40px] z-10 left-[0px] bottom-[16px]  rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
+          tw="absolute opacity-0  h-[220px] w-[40px] z-10 left-[0px] bottom-[16px]  rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
           onClick={slideLeft}
         >
           <ArrowLeft />
@@ -62,7 +60,7 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
           </div>
         </div>
         <button
-          tw="absolute pt-[10px] h-[220px] w-[40px]  right-0 bottom-[16px] opacity-0 rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
+          tw="absolute  h-full w-[40px]  right-0 bottom-[0px] opacity-0 rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
           onClick={slideRight}
         >
           <ArrowRight />
@@ -74,6 +72,7 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
 
 const Wrapper = styled.section`
   padding: 0;
+  margin: 10px 0;
   width: 100vw;
   position: relative;
   scroll-behavior: smooth;
@@ -81,6 +80,17 @@ const Wrapper = styled.section`
     ::-webkit-scrollbar {
       width: 2px;
       height: 2px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+      box-shadow: none;
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: transparent;
+      border-radius: 10px;
     }
   }
 `;

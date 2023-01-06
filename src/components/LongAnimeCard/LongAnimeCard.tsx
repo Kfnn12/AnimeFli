@@ -31,7 +31,7 @@ export default function LongAnimeCard({ anime, index }: any) {
   // console.log(anime);
 
   return (
-    <div tw="inline-block p-2 relative ">
+    <div tw="inline-block  relative ">
       <div tw="absolute z-[1] text-[18px] left-[18px] text-center bg-gradient-to-r from-orange1 to-orange2 text-black font-black w-[25px] h-[20px]">
         {index + 1}
       </div>
