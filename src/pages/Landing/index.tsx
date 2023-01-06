@@ -10,6 +10,7 @@ import requests from "../../utils/requests";
 import { BodyText, H1, NormalText } from "../../styles/typography";
 import PosterDetails from "../../components/HeroPoster/PosterDetails";
 import Row from "../../components/Row/Row";
+import LongRow from "../../components/LongRow/LongRow";
 
 export default function Landing() {
   return (
@@ -42,11 +43,12 @@ export default function Landing() {
           <div>
             <Row title="Recents" rowID={0} fetchURL={requests.fetchRecents} />
           </div>
-          <div>
-            <Row title="Popular" rowID={1} fetchURL={requests.fetchPopular} />
-          </div>
+          
           <div>
             <Row title="Movies" rowID={1} fetchURL={requests.fetchMovies} />
+          </div>
+          <div>
+            <LongRow title="Popular Today" rowID={1} fetchURL={requests.fetchPopular} />
           </div>
         </div>
       </div>
