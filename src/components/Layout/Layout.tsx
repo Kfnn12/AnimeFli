@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import { Outlet } from "react-router-dom";
 import DashboardHeader from "../DashboardHeader/DashboardHeader";
+import Footer from "../Footer/Footer";
 import { LayoutWrapper } from "./style";
 
 export default function (props: PropsWithChildren) {
@@ -11,6 +12,7 @@ export default function (props: PropsWithChildren) {
         <Outlet />
         {props.children}
       </div>
+      <Footer/>
     </LayoutWrapper>
   );
 }
