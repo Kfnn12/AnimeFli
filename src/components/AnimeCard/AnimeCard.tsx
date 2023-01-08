@@ -35,8 +35,7 @@ export default function AnimeCard({ anime }: any) {
   // console.log(list);
   function watchAnime() {
     console.log(location);
-    location.pathname = anime?.animeId
-    navigate(`/${location.pathname}`);
+    navigate(`/${anime.animeId}`);
   }
 
   return (

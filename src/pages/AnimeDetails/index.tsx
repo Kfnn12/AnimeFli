@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { getAPI } from "../../api";
 import "twin.macro";
 import { styled } from "twin.macro";
@@ -8,39 +8,11 @@ import Row from "../../components/Row/Row";
 import requests from "../../utils/requests";
 
 export default function AnimeDetails() {
-  const [episodeDetails, setEpisodeDetails] = useState<any>([]);
   const [streamLink, setStreamLink] = useState<any>([]);
   const { id } = useParams();
-  const [episodeNumber, setEpisodeNumber] = useState<number>(1);
-  useEffect(() => {
-    getAPI("anime-details", `${id}`).then((res) => {
-      if (res.status === 200) {
-        // console.log(res.data);
-        setEpisodeDetails(res.data);
-      } else {
-        console.log(res);
-      }
-      if (episodeDetails) {
-        const container: any = [];
-        episodeDetails?.episodesList?.map((anime: any, idx: number) => {
-          container[idx + 1] = anime.episodeId;
-        });
-        console.log(container);
-      }
-    });
-  }, []);
-  // console.log(episodeDetails);
-
-  // useEffect(() => {
-  //   getAPI("anime-details", `${anime.animeId}`).then((res) => {
-  //     if (res.status === 200) {
-  //       setAnimeDetails(res.data);
-  //       console.log(animeDetails?.episodesList[0].episodeId)
-  //     } else {
-  //       console.log(res);
-  //     }
-  //   });
-  // }, []);
+  const anime: any = useLoaderData()
+  
+  
   function changeEpisode(idx: number) {
     
       getAPI("vidcdn/watch", `${id}-episode-${idx}`).then((res) => {
@@ -81,38 +53,38 @@ export default function AnimeDetails() {
             <div tw="w-[260px] h-[408px]">
               <img
                 tw="h-[100%] w-[100%]"
-                src={episodeDetails.animeImg}
+                src={anime.animeImg}
                 alt=""
               />
             </div>
             <div tw="max-w-[350px] flex flex-col gap-[10px] text-[12px]">
               <p>
                 <span tw="text-orange2">Name: </span>
-                {episodeDetails.animeTitle}
+                {anime.animeTitle}
               </p>
               <p>
                 <span tw="text-orange2">Type: </span>
-                {episodeDetails.type}
+                {anime.type}
               </p>
               <p>
                 <span tw="text-orange2">Plot Summary: </span>
-                {episodeDetails.synopsis}
+                {anime.synopsis}
               </p>
               <p>
                 <span tw="text-orange2">Genre: </span>
-                {episodeDetails.genres?.join(", ")}
+                {anime.genres?.join(", ")}
               </p>
               <p>
                 <span tw="text-orange2">Released: </span>
-                {episodeDetails.releasedDate}
+                {anime.releasedDate}
               </p>
               <p>
                 <span tw="text-orange2">Status: </span>
-                {episodeDetails.status}
+                {anime.status}
               </p>
               <p>
                 <span tw="text-orange2">Other Names: </span>
-                {episodeDetails.otherNames}
+                {anime.otherNames}
               </p>
             </div>
           </div>
@@ -121,7 +93,7 @@ export default function AnimeDetails() {
           <div>
             <H4>Episodes</H4>
             <EpisodesGrid>
-              {episodeDetails?.episodesList?.map((anime: any, idx: number) => (
+              {anime?.episodesList?.map((anime: any, idx: number) => (
                 <button
                   tw="p-2 bg-secondary text-[12px]  hover:opacity-[0.7]  w-[fit] flex justify-center items-center w-[30px] h-[30px]"
                   key={idx}

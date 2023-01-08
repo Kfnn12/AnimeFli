@@ -1,18 +1,17 @@
+import axios from "axios";
 import * as React from "react";
 import { RouteObject } from "react-router-dom";
-import DashboardHeader from "../components/DashboardHeader/DashboardHeader";
-import DashboardWrapper from "../components/DashboardWrapper";
-import SideNav from "../components/DashboardWrapper/SideNav";
 import Layout from "../components/Layout/Layout";
 
-const TestPage = React.lazy(() => import("../pages/test"));
-const DashboardPage = React.lazy(() => import("../pages/Dashboard"));
 const LandingPage = React.lazy(() => import("../pages/Landing"));
 const AnimeDetailsPage = React.lazy(() => import("../pages/AnimeDetails"));
 
 const routesObject: RouteObject[] = [
   {
     element: <Layout />,
+    shouldRevalidate: ({ currentUrl }) => {
+      return currentUrl.pathname === "/:id";
+    },
     children: [
       {
         path: "/",
@@ -20,7 +19,9 @@ const routesObject: RouteObject[] = [
       },
       {
         path: ":id",
-        index: true,
+        loader: async ({ params, request }) => {
+          return axios.get(`https://gogoanime.consumet.org/anime-details/${params.id}`).then((res) => res.data)
+        },
         element: <AnimeDetailsPage />,
       },
     ],
