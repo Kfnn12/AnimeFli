@@ -12,21 +12,20 @@ const AnimeDetailsPage = React.lazy(() => import("../pages/AnimeDetails"));
 
 const routesObject: RouteObject[] = [
   {
-    element: (
-      <Layout/>
-    ),
+    element: <Layout />,
     children: [
       {
         path: "/",
         element: <LandingPage />,
       },
       {
-        path: "/category/:id",
-        element: <AnimeDetailsPage/>
-      }
+        path: ":id",
+        index: true,
+        element: <AnimeDetailsPage />,
+      },
     ],
   },
-  
+
   {
     path: "*",
     element: <h1>404</h1>,

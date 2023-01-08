@@ -42,7 +42,7 @@ export default function AnimeDetails() {
   //   });
   // }, []);
   function changeEpisode(idx: number) {
-    useEffect(() => {
+    
       getAPI("vidcdn/watch", `${id}-episode-${idx}`).then((res) => {
         // console.log(id);
 
@@ -53,7 +53,6 @@ export default function AnimeDetails() {
           // console.log(res);
         }
       });
-    }, []);
   }
 
   // get streaming urls
