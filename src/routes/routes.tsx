@@ -21,7 +21,7 @@ const routesObject: RouteObject[] = [
         element: <LandingPage />,
       },
       {
-        path: "/:id",
+        path: "/category/:id",
         element: <AnimeDetailsPage/>
       }
     ],

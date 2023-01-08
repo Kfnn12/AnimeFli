@@ -50,7 +50,7 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
       {/* <p tw="py-5 mx-[27px] text-[#5A6073] font-medium">{props.title}</p> */}
       <div tw="relative">
         <button
-          tw="absolute opacity-0  h-[220px] w-[40px] z-10 left-[0px] bottom-[16px]  rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
+          tw="absolute opacity-0  h-full w-[40px] z-10 left-[0px] bottom-[0px]  rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[5px] bg-[rgba(69, 71, 82, 0.3)]"
           onClick={slideLeft}
         >
           <ArrowLeft />
@@ -67,7 +67,7 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
           </div>
         </div>
         <button
-          tw="absolute  h-full w-[40px]  right-0 bottom-[0px] opacity-0 rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
+          tw="absolute  h-full w-[40px]  right-0 bottom-[0px] opacity-0 rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[5px] bg-[rgba(69, 71, 82, 0.3)]"
           onClick={slideRight}
         >
           <ArrowRight />

@@ -14,7 +14,7 @@ import {
   faInfo,
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface MovieCardProps {
   title?: string;
@@ -25,15 +25,15 @@ interface MovieCardProps {
 export default function AnimeCard({ anime }: any) {
   const [list, setList] = useState<any>();
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`https://gogoanime.consumet.org/anime-details/${anime.animeId}`)
       .then((response) => setList(response.data));
   }, []);
   // console.log(list);
-  function watchAnime(){
-    navigate(anime?.animeId)
+  function watchAnime() {
+    navigate(`/${anime?.animeId}`);
   }
 
   return (
@@ -56,8 +56,10 @@ export default function AnimeCard({ anime }: any) {
               </p>
             </div>
             <div tw="flex justify-end gap-2 mt-[8px]">
-              <Button size="small" onClick={watchAnime} variant="icon">
-                <FontAwesomeIcon icon={faPlay} />
+              <Button size="small" variant="icon">
+                <Link to={"category/" + `${anime?.animeId}`}>
+                  <FontAwesomeIcon icon={faPlay} />
+                </Link>
               </Button>
               <Button tw="bg-none bg-white" size="small" variant="icon">
                 <FontAwesomeIcon icon={faInfo} />
