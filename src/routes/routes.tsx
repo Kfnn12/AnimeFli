@@ -5,6 +5,7 @@ import Layout from "../components/Layout/Layout";
 
 const LandingPage = React.lazy(() => import("../pages/Landing"));
 const AnimeDetailsPage = React.lazy(() => import("../pages/AnimeDetails"));
+const PlayerPage = React.lazy(() => import("../pages/Player"));
 
 const routesObject: RouteObject[] = [
   {
@@ -23,6 +24,13 @@ const routesObject: RouteObject[] = [
           return axios.get(`https://gogoanime.consumet.org/anime-details/${params.id}`).then((res) => res.data)
         },
         element: <AnimeDetailsPage />,
+      },
+      {
+        path: ":id/:episode",
+        loader: async ({ params, request }) => {
+          return axios.get(`https://gogoanime.consumet.org/anime-details/${params.id}`).then((res) => res.data)
+        },
+        element: <PlayerPage />,
       },
     ],
   },

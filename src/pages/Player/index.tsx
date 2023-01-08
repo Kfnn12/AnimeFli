@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { getAPI } from "../../api";
 import "twin.macro";
 import { styled } from "twin.macro";
@@ -9,18 +9,16 @@ import requests from "../../utils/requests";
 
 export default function AnimeDetails() {
   const [streamLink, setStreamLink] = useState<any>([]);
-  const { id } = useParams();
+  const { id, episode } = useParams();
   const anime: any = useLoaderData();
-  const navigate = useNavigate();
 
   function changeEpisode(idx: number) {
-    navigate(`/${id}/${id}-episode-${idx}`);
     getAPI("vidcdn/watch", `${id}-episode-${idx}`).then((res) => {
-      console.log(id);
+      // console.log(id);
 
       if (res.status === 200) {
         setStreamLink(res.data);
-        console.log(streamLink);
+        // console.log(streamLink);
       } else {
         // console.log(res);
       }
@@ -45,43 +43,23 @@ export default function AnimeDetails() {
   return (
     <div tw=" flex justify-center flex-col ">
       <div tw="flex justify-between gap-2 mb-5 mx-[64px]">
-        <div tw="">
-          <div tw="bg-orange2 p-3 mb-[30px]">
-            <BodyText>Anime Info</BodyText>
-          </div>
-          <div tw="flex gap-2">
-            <div tw="w-[260px] h-[408px]">
-              <img tw="h-[100%] w-[100%]" src={anime.animeImg} alt="" />
-            </div>
-            <div tw="max-w-[350px] flex flex-col gap-[10px] text-[12px]">
-              <p>
-                <span tw="text-orange2">Name: </span>
-                {anime.animeTitle}
-              </p>
-              <p>
-                <span tw="text-orange2">Type: </span>
-                {anime.type}
-              </p>
-              <p>
-                <span tw="text-orange2">Plot Summary: </span>
-                {anime.synopsis}
-              </p>
-              <p>
-                <span tw="text-orange2">Genre: </span>
-                {anime.genres?.join(", ")}
-              </p>
-              <p>
-                <span tw="text-orange2">Released: </span>
-                {anime.releasedDate}
-              </p>
-              <p>
-                <span tw="text-orange2">Status: </span>
-                {anime.status}
-              </p>
-              <p>
-                <span tw="text-orange2">Other Names: </span>
-                {anime.otherNames}
-              </p>
+        <div tw="flex justify-center items-center">
+          <div tw="w-[686px] h-[385.875px] ">
+            <div tw=" w-full h-full  ">
+              {streamLink.Referer ? (
+                <iframe
+                  // width="853"
+                  // height="480"
+                  src={`${streamLink.Referer}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="Embedded episode"
+                  loading="eager"
+                  tw=" w-full h-full top-0 left-0 right-0 bottom-0"
+                />
+              ) : (
+                <>Loading</>
+              )}
             </div>
           </div>
         </div>
@@ -95,7 +73,7 @@ export default function AnimeDetails() {
                   key={idx}
                   onClick={() => changeEpisode(idx + 1)}
                 >
-                  {anime.episodeNum}
+                  {idx + 1}
                 </button>
               ))}
             </EpisodesGrid>
