@@ -14,7 +14,7 @@ export default function EpisodeModal({ anime, setIsOpen }: any) {
   const [animeDetails, setAnimeDetails] = useState<any>([]);
   const navigate = useNavigate();
   const watchAnime = () => {
-    navigate(`${animeDetails?.episodesList[0].episodeId}`);
+    navigate(`${animeDetails?.animeId}`);
   };
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function EpisodeModal({ anime, setIsOpen }: any) {
       }
     });
   }, []);
-  // console.log(animeDetails);
+  console.log(animeDetails);
 
   return (
     <div>

@@ -3,7 +3,6 @@ import Logo from "../../assets/icons/logo.svg";
 import links from "./links";
 import { Aside, Nav, NavItem } from "./styles";
 import "twin.macro";
-import Text from "../../styles/typography/Text";
 
 export default function SideNav() {
   const { pathname } = useLocation();

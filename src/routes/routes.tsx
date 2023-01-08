@@ -8,7 +8,7 @@ import Layout from "../components/Layout/Layout";
 const TestPage = React.lazy(() => import("../pages/test"));
 const DashboardPage = React.lazy(() => import("../pages/Dashboard"));
 const LandingPage = React.lazy(() => import("../pages/Landing"));
-const PlayerPage = React.lazy(() => import("../pages/Player"));
+const AnimeDetailsPage = React.lazy(() => import("../pages/AnimeDetails"));
 
 const routesObject: RouteObject[] = [
   {
@@ -20,10 +20,10 @@ const routesObject: RouteObject[] = [
         path: "/",
         element: <LandingPage />,
       },
-      // {
-      //   path: "/:id",
-      //   element: <PlayerPage/>
-      // }
+      {
+        path: "/:id",
+        element: <AnimeDetailsPage/>
+      }
     ],
   },
   

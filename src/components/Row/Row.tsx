@@ -16,17 +16,24 @@ interface RowProps {
 export default function Row(props: React.PropsWithChildren<RowProps>) {
   const [movies, setMovies] = useState<any>([]);
   const [isOpen, setIsOpen] = useState(false);
-
   useEffect(() => {
     if (props.fetchURL != undefined) {
       axios.get(props.fetchURL).then((response) => {
         setMovies(response.data);
       });
       if (movies) {
+        const container: any = []
+        movies?.map((anime: any, idx: number) => {
+          container[idx] = anime.episodeId
+        } );
+        console.log(container);
+        
       }
     }
   }, [props.fetchURL]);
-  // console.log(movies);
+  
+  // console.log(container);
+  
 
   const slideLeft = () => {
     var slider: any = document.getElementById("slider" + props.rowID);

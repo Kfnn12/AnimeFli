@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 export default function DashboardHeader() {
   return (
-    <div tw="flex absolute w-full  bg-transparent  z-10 px-[64px] py-[24px] items-center justify-between">
+    <div tw="flex relative  w-full  bg-transparent  z-[1000] px-[64px] py-[24px] items-center justify-between">
       <div tw="flex gap-[20px]">
         <Link to="/" tw="text-orange2 text-2xl">Logo</Link>
 
