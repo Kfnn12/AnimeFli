@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate, useParams } from "react-router-dom";
 import { getAPI } from "../../api";
 import "twin.macro";
 import { styled } from "twin.macro";
@@ -9,49 +9,43 @@ import requests from "../../utils/requests";
 
 export default function AnimeDetails() {
   const { id, episode } = useParams();
-  const anime: any = useLoaderData();
+  const location = useLocation()
   const [streamLink, setStreamLink] = useState<any>([]);
-  const [episodeNumber, setEpisodeNumber] = useState<any>(anime.episodeNum)
+  const [episodeNum, setEpisodeNum] = useState<number | any>();
+  const anime: any = useLoaderData();
 
+
+  console.log(streamLink);
+  
+  const navigate = useNavigate();
   function changeEpisode(idx: number) {
-    getAPI("vidcdn/watch", `${id}-episode-${idx}`).then((res) => {
-      // console.log(id);
-
-      if (res.status === 200) {
-        setStreamLink(res.data);
-        // console.log(streamLink);
-      } else {
-        // console.log(res);
-      }
-    });
+    setEpisodeNum(idx);
+    navigate(`/${id}/${idx}`);
+  }
+  function NextEpisode() {
+    navigate(`/${id}/${episodeNum + 1}`);
+  }
+  function PreviousEpisode() {
+    navigate(`/${id}/${episodeNum - 1}`);
   }
 
   // get streaming urls
   useEffect(() => {
-    getAPI("vidcdn/watch", `${episode}`).then((res) => {
-      // console.log(id);
-
+    getAPI("vidcdn/watch", `${id}-episode-${episode}`).then((res) => {
       if (res.status === 200) {
         setStreamLink(res.data);
-        // console.log(streamLink);
-      } else {
-        // console.log(res);
       }
     });
   }, []);
-  const watcher = streamLink;
-  console.log(watcher);
   return (
     <div tw=" flex justify-center flex-col ">
-      <p>{episodeNumber}</p>
+      <p tw="mx-[64px] mb-4 p-2 bg-orange2">{id} episode {episode}</p>
       <div tw="flex justify-between gap-2 mb-5 mx-[64px]">
-        <div tw="flex justify-center items-center">
+        <div tw="flex flex-col justify-center items-center">
           <div tw="w-[686px] h-[385.875px] ">
-            <div tw=" w-full h-full  ">
+            <div tw=" w-full h-full ">
               {streamLink.Referer ? (
                 <iframe
-                  // width="853"
-                  // height="480"
                   src={`${streamLink.Referer}`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -64,6 +58,14 @@ export default function AnimeDetails() {
               )}
             </div>
           </div>
+          <div tw="w-full m-1 text-[12px] text-orange2 flex justify-between">
+            <button onClick={PreviousEpisode}>
+              <p>Prev Episode</p>
+            </button>
+            <button onClick={NextEpisode}>
+              <p>Next Episode</p>
+            </button>
+          </div>
         </div>
         <div tw="flex justify-center ">
           <div>
@@ -73,9 +75,9 @@ export default function AnimeDetails() {
                 <button
                   tw="p-2 bg-secondary text-[12px]  hover:opacity-[0.7]  w-[fit] flex justify-center items-center w-[30px] h-[30px]"
                   key={idx}
-                  onClick={() => changeEpisode(item.episodeNum)}
+                  onClick={() => changeEpisode(idx + 1)}
                 >
-                  {item.episodeNum}
+                  {idx + 1}
                 </button>
               ))}
             </EpisodesGrid>

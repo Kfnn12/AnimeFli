@@ -15,32 +15,11 @@ export default function AnimeDetails() {
   console.log(anime);
   
   function changeEpisode(idx: number) {
-    navigate(`/${id}/${id}-episode-${idx}`);
-    getAPI("vidcdn/watch", `${id}-episode-${idx}`).then((res) => {
-      console.log(id);
-
-      if (res.status === 200) {
-        setStreamLink(res.data);
-        console.log(streamLink);
-      } else {
-        // console.log(res);
-      }
-    });
+    navigate(`/${id}/${idx}`);
+    
   }
 
-  // get streaming urls
-  useEffect(() => {
-    getAPI("vidcdn/watch", `${id}-episode-2`).then((res) => {
-      // console.log(id);
-
-      if (res.status === 200) {
-        setStreamLink(res.data);
-        // console.log(streamLink);
-      } else {
-        // console.log(res);
-      }
-    });
-  }, []);
+  
   const watcher = streamLink?.Referer;
   // console.log(watcher);
   return (
@@ -90,13 +69,13 @@ export default function AnimeDetails() {
           <div>
             <H4>Episodes</H4>
             <EpisodesGrid>
-              {anime?.episodesList?.map((anime: any, idx: number) => (
+              {anime?.episodesList?.map((item: any, idx: number) => (
                 <button
                   tw="p-2 bg-secondary text-[12px]  hover:opacity-[0.7]  w-[fit] flex justify-center items-center w-[30px] h-[30px]"
                   key={idx}
-                  onClick={() => changeEpisode(anime.animeNum)}
+                  onClick={() => changeEpisode(idx + 1)}
                 >
-                  {anime.episodeNum}
+                  {idx + 1}
                 </button>
               ))}
             </EpisodesGrid>

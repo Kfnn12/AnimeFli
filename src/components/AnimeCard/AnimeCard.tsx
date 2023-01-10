@@ -54,7 +54,7 @@ export default function AnimeCard({ anime }: any) {
               <p tw="text-[12px]">{list?.type}</p>
               <p tw="text-[12px]">{list?.status}</p>
               <p tw="text-[12px] text-orange2">
-                <span tw="text-white">Genres:</span> {list.genres?.join(", ")}
+                <span tw="text-white">Genres:</span> {list.genres?.slice(0,3).join(", ")}
               </p>
             </div>
             <div tw="flex justify-end gap-2 mt-[8px]">
