@@ -32,7 +32,7 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
     }
   }, [props.fetchURL]);
   
-  // console.log(container);
+  // console.log(movies);
   
 
   const slideLeft = () => {

@@ -12,7 +12,8 @@ export default function AnimeDetails() {
   const { id } = useParams();
   const anime: any = useLoaderData();
   const navigate = useNavigate();
-
+  console.log(anime);
+  
   function changeEpisode(idx: number) {
     navigate(`/${id}/${id}-episode-${idx}`);
     getAPI("vidcdn/watch", `${id}-episode-${idx}`).then((res) => {
@@ -93,7 +94,7 @@ export default function AnimeDetails() {
                 <button
                   tw="p-2 bg-secondary text-[12px]  hover:opacity-[0.7]  w-[fit] flex justify-center items-center w-[30px] h-[30px]"
                   key={idx}
-                  onClick={() => changeEpisode(idx + 1)}
+                  onClick={() => changeEpisode(anime.animeNum)}
                 >
                   {anime.episodeNum}
                 </button>

@@ -8,9 +8,10 @@ import Row from "../../components/Row/Row";
 import requests from "../../utils/requests";
 
 export default function AnimeDetails() {
-  const [streamLink, setStreamLink] = useState<any>([]);
   const { id, episode } = useParams();
   const anime: any = useLoaderData();
+  const [streamLink, setStreamLink] = useState<any>([]);
+  const [episodeNumber, setEpisodeNumber] = useState<any>(anime.episodeNum)
 
   function changeEpisode(idx: number) {
     getAPI("vidcdn/watch", `${id}-episode-${idx}`).then((res) => {
@@ -27,7 +28,7 @@ export default function AnimeDetails() {
 
   // get streaming urls
   useEffect(() => {
-    getAPI("vidcdn/watch", `${id}-episode-2`).then((res) => {
+    getAPI("vidcdn/watch", `${episode}`).then((res) => {
       // console.log(id);
 
       if (res.status === 200) {
@@ -38,10 +39,11 @@ export default function AnimeDetails() {
       }
     });
   }, []);
-  const watcher = streamLink?.Referer;
-  // console.log(watcher);
+  const watcher = streamLink;
+  console.log(watcher);
   return (
     <div tw=" flex justify-center flex-col ">
+      <p>{episodeNumber}</p>
       <div tw="flex justify-between gap-2 mb-5 mx-[64px]">
         <div tw="flex justify-center items-center">
           <div tw="w-[686px] h-[385.875px] ">
@@ -67,13 +69,13 @@ export default function AnimeDetails() {
           <div>
             <H4>Episodes</H4>
             <EpisodesGrid>
-              {anime?.episodesList?.map((anime: any, idx: number) => (
+              {anime?.episodesList?.map((item: any, idx: number) => (
                 <button
                   tw="p-2 bg-secondary text-[12px]  hover:opacity-[0.7]  w-[fit] flex justify-center items-center w-[30px] h-[30px]"
                   key={idx}
-                  onClick={() => changeEpisode(idx + 1)}
+                  onClick={() => changeEpisode(item.episodeNum)}
                 >
-                  {idx + 1}
+                  {item.episodeNum}
                 </button>
               ))}
             </EpisodesGrid>
