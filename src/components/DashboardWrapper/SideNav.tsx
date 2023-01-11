@@ -6,7 +6,7 @@ import "twin.macro";
 
 export default function SideNav() {
   const { pathname } = useLocation();
-
+  
   return (
     <Aside>
       <div >
