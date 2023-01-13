@@ -7,7 +7,7 @@ import { BodyText, H3, H4 } from "../../styles/typography";
 import Row from "../../components/Row/Row";
 import requests from "../../utils/requests";
 
-export default function AnimeDetails() {
+export default function Player() {
   const { id, episode } = useParams();
   const location = useLocation()
   const [streamLink, setStreamLink] = useState<any>([]);
@@ -73,7 +73,7 @@ export default function AnimeDetails() {
             <EpisodesGrid>
               {anime?.episodesList?.map((item: any, idx: number) => (
                 <button
-                  tw="p-2 bg-secondary text-[12px]  hover:opacity-[0.7]  w-[fit] flex justify-center items-center w-[30px] h-[30px]"
+                  tw="p-2 bg-secondary text-[12px]  hover:opacity-[0.7]  flex justify-center items-center w-[30px] h-[30px]"
                   key={idx}
                   onClick={() => changeEpisode(idx + 1)}
                 >
