@@ -36,7 +36,7 @@ export default function AnimeDetails() {
         setStreamLink(res.data);
       }
     });
-  }, []);
+  }, [episode]);
   return (
     <div tw=" flex justify-center flex-col ">
       <p tw="mx-[64px] mb-4 p-2 bg-orange2">{id} episode {episode}</p>
