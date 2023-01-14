@@ -72,7 +72,7 @@ export default function AnimeCard({ anime }: any) {
   );
 }
 
-const AnimeCardWrapper = styled.div`
+export const AnimeCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0px 10px;

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Key, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "twin.macro";
 import { styled } from "twin.macro";
 import AnimeCard from "../../components/AnimeCard/AnimeCard";
@@ -7,6 +8,7 @@ import { BodyText } from "../../styles/typography";
 import links from "./links";
 export default function Search() {
   const [keyword, setKeyword] = useState("");
+  const [genre, setGenre] = useState("");
   const [searchResults, setSearchResults] = useState<any>([]);
 
   //get search results
@@ -18,7 +20,13 @@ export default function Search() {
   console.log(searchResults);
 
   // get genres
-
+  useEffect(() => {
+    if (genre) {
+      axios
+        .get(`https://gogoanime.consumet.org/genre/${genre}`)
+        .then((res) => console.log(res.data));
+    }
+  });
   return (
     <div tw="mx-[64px] ">
       <div tw="mb-3">
@@ -33,11 +41,13 @@ export default function Search() {
       <div tw="flex">
         <div tw="grid grid-cols-5 gap-x-3.5 gap-y-3">
           {links.map((item: any, idx: Key) => (
-            <GenreCards key={idx}>
+            <GenreCards key={idx} onClick={() => setGenre(item.url)}>
+              <Link to={item.url}>
               <img src={item.img} alt="" />
               <div className="overlay">
                 <BodyText>{item.genre}</BodyText>
               </div>
+            </Link>
             </GenreCards>
           ))}
         </div>
@@ -46,7 +56,7 @@ export default function Search() {
   );
 }
 
-const GenreCards = styled.div`
+export const GenreCards = styled.div`
   width: 100%;
   position: relative;
   cursor: pointer;

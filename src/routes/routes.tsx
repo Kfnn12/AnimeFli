@@ -7,6 +7,7 @@ const LandingPage = React.lazy(() => import("../pages/Landing"));
 const AnimeDetailsPage = React.lazy(() => import("../pages/AnimeDetails"));
 const PlayerPage = React.lazy(() => import("../pages/Player"));
 const SearchPage = React.lazy(() => import("../pages/Search"));
+const GenrePage = React.lazy(() => import("../pages/Genre"));
 
 const routesObject: RouteObject[] = [
   {
@@ -35,7 +36,16 @@ const routesObject: RouteObject[] = [
       },
       {
         path: "/search",
-        element: <SearchPage/>
+        element: <SearchPage/>,
+        
+      },
+      {
+        path: "search/:genre",
+        element: <GenrePage/>,
+        loader: async ({ params, request }) => {
+          return axios.get(`https://gogoanime.consumet.org/genre/${params.genre}`).then((res) => res.data)
+        },
+
       }
     ],
   },

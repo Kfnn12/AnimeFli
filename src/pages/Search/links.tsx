@@ -16,62 +16,62 @@ interface GenreLinks {
 const links: GenreLinks[] = [
   {
     genre: "Action",
-    url: "/action",
+    url: "action",
     img: Image1
   },
   {
     genre: "Adventure",
-    url: "/adventure",
+    url: "adventure",
     img: Image2
   },
   {
     genre: "Comedy",
-    url: "/comedy",
+    url: "comedy",
     img: Image3
   },
   {
     genre: "Crime",
-    url: "/Crime",
+    url: "Crime",
     img: Image4
   },
   {
     genre: "Demons",
-    url: "/demons",
+    url: "demons",
     img: Image5
   },
   {
     genre: "Dub",
-    url: "/dub",
+    url: "dub",
     img: Image6
   },
   {
     genre: "Family",
-    url: "/family",
+    url: "family",
     img: Image7
   },
   {
     genre: "Fantasy",
-    url: "/fantasy",
+    url: "fantasy",
     img: Image8
   },
   {
     genre: "Game",
-    url: "/game",
+    url: "game",
     img: Image9
   },
   {
     genre: "Horror",
-    url: "/horror",
+    url: "horror",
     img: Image10
   },
   {
     genre: "Shounen",
-    url: "/horror",
+    url: "horror",
     img: Image3
   },
   {
     genre: "Shounen",
-    url: "/Shounen",
+    url: "shounen",
     img: Image1
   },
 ];
