@@ -32,9 +32,9 @@ export default function Genre() {
   return (
     <div tw="mx-[64px]">
       <H1>{genre}</H1>
-      <div tw="grid grid-cols-5 gap-x-3 gap-y-3">
+      <div tw="grid grid-cols-5 gap-x-3 gap-y-3 mt-[20px]">
         {anime.map((item: any, idx: Key) => (
-          <GenreTitleCard tw="max-w-[230px] h-fit" key={idx}>
+          <GenreTitleCard tw=" h-fit" key={idx}>
             <img src={item.animeImg} alt="" />
               <div className="overlay">
                 <div tw="h-[35px] truncate whitespace-normal ">
@@ -60,12 +60,12 @@ export default function Genre() {
 const GenreTitleCard = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0px 10px;
+  /* margin: 0px 10px; */
   gap: 10px;
   overflow: hidden;
   height: 180px;
   cursor: pointer;
-  width: 250px;
+  width: 230px;
   border-radius: 10px;
   text-align: left;
   white-space: normal;
