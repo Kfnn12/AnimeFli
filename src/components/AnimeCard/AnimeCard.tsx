@@ -24,9 +24,7 @@ interface MovieCardProps {
 }
 export default function AnimeCard({ anime }: any) {
   const [list, setList] = useState<any>();
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  let location = useLocation()
   useEffect(() => {
     axios
       .get(`https://gogoanime.consumet.org/anime-details/${anime.animeId}`)
@@ -35,12 +33,16 @@ export default function AnimeCard({ anime }: any) {
   // console.log(list);
   function watchAnime() {
     console.log(location);
-    navigate(`/${anime.animeId}`);
+    if (anime.type === "Movie") {
+      
+    } else {
+      navigate(`/${anime.animeId}`);
+    }
   }
 
   return (
     <div tw="inline-block  ">
-      <AnimeCardWrapper onClick={() => setIsOpen(true)}>
+      <AnimeCardWrapper>
         <img src={anime.animeImg} alt="alt" />
 
         {list && (
@@ -54,7 +56,8 @@ export default function AnimeCard({ anime }: any) {
               <p tw="text-[12px]">{list?.type}</p>
               <p tw="text-[12px]">{list?.status}</p>
               <p tw="text-[12px] text-orange2">
-                <span tw="text-white">Genres:</span> {list.genres?.slice(0,3).join(", ")}
+                <span tw="text-white">Genres:</span>{" "}
+                {list.genres?.slice(0, 3).join(", ")}
               </p>
             </div>
             <div tw="flex justify-end gap-2 mt-[8px]">

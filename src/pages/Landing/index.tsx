@@ -19,14 +19,14 @@ export default function Landing() {
             <CarouselItem>
               <img src={Poster2} alt="" />
               <PosterDetails
-                title="One Piece"
+                title="One-Piece"
                 synopsis="The series focuses on Monkey D. Luffy, a young man made of rubber, who, inspired by his childhood idol, the powerful pirate Red-Haired Shanks, sets off on a journey from the East Blue Sea to find the mythical treasure, the One Piece, and proclaim himself the King of the Pirates."
               />
             </CarouselItem>
             <CarouselItem>
               <img src={Poster4} alt="" />
               <PosterDetails
-                title="Chainsaw Man"
+                title="Chainsaw-Man"
                 synopsis="Chainsaw Man follows the story of Denji, an impoverished young man who makes a contract that fuses his body with that of a dog-like devil named Pochita, granting him the ability to transform parts of his body into chainsaws."
               />
             </CarouselItem>

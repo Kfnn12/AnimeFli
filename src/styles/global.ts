@@ -39,6 +39,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	max-width: 1440px;
+	margin: 0 auto;
 	line-height: 1;
 	font-family: 'Work Sans', sans-serif;
 	background-color: #17181C;

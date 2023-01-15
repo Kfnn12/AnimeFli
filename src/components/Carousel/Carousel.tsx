@@ -90,7 +90,7 @@ const StyledCarouselItem = styled.div`
 `;
 const StyledCarousel = styled.div`
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
   position: relative;
   .inner {
     white-space: nowrap;

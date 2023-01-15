@@ -15,7 +15,6 @@ interface RowProps {
 
 export default function Row(props: React.PropsWithChildren<RowProps>) {
   const [movies, setMovies] = useState<any>([]);
-  const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     if (props.fetchURL != undefined) {
       axios.get(props.fetchURL).then((response) => {
@@ -26,13 +25,11 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
         movies?.map((anime: any, idx: number) => {
           container[idx] = anime.episodeId
         } );
-        console.log(container);
         
       }
     }
   }, [props.fetchURL]);
   
-  // console.log(movies);
   
 
   const slideLeft = () => {
@@ -47,7 +44,6 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
   return (
     <Wrapper>
       <H4 tw="mx-[27px] py-2">{props.title}</H4>
-      {/* <p tw="py-5 mx-[27px] text-[#5A6073] font-medium">{props.title}</p> */}
       <div tw="relative">
         <button
           tw="absolute opacity-0  h-full w-[40px] z-10 left-[0px] bottom-[0px]  rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[5px] bg-[rgba(69, 71, 82, 0.3)]"
@@ -62,7 +58,7 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
         >
           <div tw="w-full h-full ml-[18px]  whitespace-nowrap scroll-smooth  relative">
             {movies?.map((anime: any, idx: number) => (
-              <AnimeCard setIsOpen={setIsOpen} key={idx} anime={anime} />
+              <AnimeCard key={idx} anime={anime} />
             ))}
           </div>
         </div>
@@ -80,7 +76,7 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
 const Wrapper = styled.section`
   padding: 0;
   margin: 10px 0;
-  width: 100vw;
+  width: 100%;
   position: relative;
   scroll-behavior: smooth;
   .row {

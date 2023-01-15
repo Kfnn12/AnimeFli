@@ -78,7 +78,7 @@ export default function LongRow(props: React.PropsWithChildren<RowProps>) {
 const Wrapper = styled.section`
   padding: 0;
   margin: 10px 0;
-  width: 100vw;
+  width: 100%;
   position: relative;
   scroll-behavior: smooth;
   .row {
