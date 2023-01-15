@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  useLoaderData,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { getAPI } from "../../api";
 import "twin.macro";
 import { styled } from "twin.macro";
@@ -9,24 +14,27 @@ import requests from "../../utils/requests";
 
 export default function Player() {
   const { id, episode } = useParams();
-  const location = useLocation()
+  const location = useLocation();
   const [streamLink, setStreamLink] = useState<any>([]);
   const [episodeNum, setEpisodeNum] = useState<number | any>();
   const anime: any = useLoaderData();
 
-
   console.log(streamLink);
-  
+
   const navigate = useNavigate();
   function changeEpisode(idx: number) {
     setEpisodeNum(idx);
     navigate(`/${id}/${idx}`);
   }
   function NextEpisode() {
-    navigate(`/${id}/${episodeNum + 1}`);
+    if (episode) {
+      navigate(`/${id}/${parseInt(episode) + 1}`);
+    }
   }
   function PreviousEpisode() {
-    navigate(`/${id}/${episodeNum - 1}`);
+    if (episode) {
+      navigate(`/${id}/${parseInt(episode) - 1}`);
+    }
   }
 
   // get streaming urls
@@ -39,7 +47,9 @@ export default function Player() {
   }, [episode]);
   return (
     <div tw=" flex justify-center flex-col ">
-      <p tw="mx-[64px] mb-4 p-2 bg-orange2">{id} episode {episode}</p>
+      <p tw="mx-[64px] mb-4 p-2 bg-orange2">
+        {id} episode {episode}
+      </p>
       <div tw="flex justify-between gap-2 mb-5 mx-[64px]">
         <div tw="flex flex-col justify-center items-center">
           <div tw="w-[686px] h-[385.875px] ">
