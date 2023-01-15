@@ -35,7 +35,7 @@ const routesObject: RouteObject[] = [
         element: <PlayerPage />,
       },
       {
-        path: "/search",
+        path: "search",
         element: <SearchPage/>,
         
       },
@@ -49,7 +49,6 @@ const routesObject: RouteObject[] = [
       }
     ],
   },
-
   {
     path: "*",
     element: <h1>404</h1>,
