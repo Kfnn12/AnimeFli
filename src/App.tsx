@@ -7,9 +7,12 @@ function App() {
   const router = createBrowserRouter(routesObject)
   return (
     <>
+    <BrowserRouter>
         <React.Suspense fallback={<div>Loading...</div>}>
-          <RouterProvider router={router}/>
+          {/* <RouterProvider router={router}/> */}
+          <Routes/>
         </React.Suspense>
+    </BrowserRouter>
     </>
   );
 }

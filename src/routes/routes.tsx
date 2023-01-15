@@ -12,9 +12,6 @@ const GenrePage = React.lazy(() => import("../pages/Genre"));
 const routesObject: RouteObject[] = [
   {
     element: <Layout />,
-    shouldRevalidate: ({ currentUrl }) => {
-      return currentUrl.pathname === "/:id";
-    },
     children: [
       {
         path: "/",
@@ -35,7 +32,7 @@ const routesObject: RouteObject[] = [
         element: <PlayerPage />,
       },
       {
-        path: "search",
+        path: "/search",
         element: <SearchPage/>,
         
       },
@@ -49,6 +46,7 @@ const routesObject: RouteObject[] = [
       }
     ],
   },
+
   {
     path: "*",
     element: <h1>404</h1>,
