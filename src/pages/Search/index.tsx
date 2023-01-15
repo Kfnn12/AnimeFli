@@ -1,6 +1,7 @@
+import { ANIME } from "@consumet/extensions";
 import axios from "axios";
 import { Key, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "twin.macro";
 import { styled } from "twin.macro";
 import AnimeCard from "../../components/AnimeCard/AnimeCard";
@@ -10,6 +11,7 @@ export default function Search() {
   const [keyword, setKeyword] = useState("");
   const [genre, setGenre] = useState("");
   const [searchResults, setSearchResults] = useState<any>([]);
+  const navigate = useNavigate()
 
   //get search results
   useEffect(() => {
@@ -29,25 +31,41 @@ export default function Search() {
   });
   return (
     <div tw="mx-[64px] ">
-      <div tw="mb-3">
+      <div tw="mb-3 relative">
         <input
-          tw="h-[30px] w-full text-grayText text-[14px] focus:outline-0  border-2 border-secondary bg-transparent rounded-2xl p-2 flex items-center justify-center "
+          tw="h-[30px] w-full text-grayText text-[14px] focus:outline-0  border-2 border-secondary bg-transparent  p-2 flex items-center justify-center "
           type="text"
           placeholder="Search for anime"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
         />
+        {keyword ? (
+          <div tw="absolute w-full mt-[10px] max-h-[400px] overflow-y-scroll z-[100] bg-primary border-2 border-secondary border-solid ">
+            {searchResults.map((item: any, idx: Key) => (
+              <div
+                key={idx}
+                tw="w-full flex items-center gap-3 h-[80px] hover:bg-secondary cursor-pointer p-[15px]"
+                onClick={() => navigate(`/${item.animeId}`)}
+              >
+                <img tw="h-full w-[50px]" src={item.animeImg} alt="" />
+                <div tw="flex flex-col">
+                  <p tw="text-orange2">{item.animeTitle}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
       <div tw="flex">
         <div tw="grid grid-cols-5 gap-x-3.5 gap-y-3">
           {links.map((item: any, idx: Key) => (
             <GenreCards key={idx} onClick={() => setGenre(item.url)}>
               <Link to={item.url}>
-              <img src={item.img} alt="" />
-              <div className="overlay">
-                <BodyText>{item.genre}</BodyText>
-              </div>
-            </Link>
+                <img src={item.img} alt="" />
+                <div className="overlay">
+                  <BodyText>{item.genre}</BodyText>
+                </div>
+              </Link>
             </GenreCards>
           ))}
         </div>
