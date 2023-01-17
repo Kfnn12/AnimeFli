@@ -15,6 +15,7 @@ import {
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 import { useLocation, useNavigate } from "react-router-dom";
+import Skeleton from "../Skeleton/Skeleton";
 
 interface MovieCardProps {
   title?: string;
@@ -24,17 +25,22 @@ interface MovieCardProps {
 }
 export default function AnimeCard({ anime }: any) {
   const [list, setList] = useState<any>();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    axios
-      .get(`https://gogoanime.consumet.org/anime-details/${anime.animeId}`)
-      .then((response) => setList(response.data));
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      axios
+        .get(`https://gogoanime.consumet.org/anime-details/${anime.animeId}`)
+        .then((response) => setList(response.data));
+      setIsLoading(false);
+    });
+    return () => clearTimeout(timer);
   }, []);
-  // console.log(list);
+  // console.log(isLoading);
   function watchAnime() {
     console.log(location);
     if (anime.type === "Movie") {
-      
     } else {
       navigate(`/${anime.animeId}`);
     }
@@ -42,10 +48,11 @@ export default function AnimeCard({ anime }: any) {
 
   return (
     <div tw="inline-block  ">
-      <AnimeCardWrapper>
-        <img src={anime.animeImg} alt="alt" />
+      {isLoading && <Skeleton />}
+      {!isLoading && (
+        <AnimeCardWrapper>
+          <img src={anime.animeImg} alt="alt" />
 
-        {list && (
           <div className="overlay">
             <div tw="h-[35px] truncate whitespace-normal ">
               <BodyText tw="text-[17px] text-orange2">
@@ -57,7 +64,7 @@ export default function AnimeCard({ anime }: any) {
               <p tw="text-[12px]">{list?.status}</p>
               <p tw="text-[12px] text-orange2">
                 <span tw="text-white">Genres:</span>{" "}
-                {list.genres?.slice(0, 3).join(", ")}
+                {list?.genres?.slice(0, 3).join(", ")}
               </p>
             </div>
             <div tw="flex justify-end gap-2 mt-[8px]">
@@ -69,8 +76,8 @@ export default function AnimeCard({ anime }: any) {
               </Button>
             </div>
           </div>
-        )}
-      </AnimeCardWrapper>
+        </AnimeCardWrapper>
+      )}
     </div>
   );
 }
