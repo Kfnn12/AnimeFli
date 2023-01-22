@@ -45,20 +45,17 @@ export default function Landing() {
           </div>
 
           <div>
-            <Row title="Movies" rowID={1} fetchURL={requests.fetchMovies} />
-          </div>
-          <div>
             <LongRow
-              title="Popular Today"
+              title="Top Airing"
               rowID={2}
-              fetchURL={requests.fetchPopular}
+              fetchURL={requests.fetchTopAiring}
             />
           </div>
           <div>
             <Row
-              title="Top Airing"
+              title="Popular today"
               rowID={3}
-              fetchURL={requests.fetchTopAiring}
+              fetchURL={requests.fetchPopular}
             />
           </div>
         </div>
