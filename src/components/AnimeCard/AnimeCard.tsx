@@ -1,28 +1,14 @@
 import "twin.macro";
-import Image from "../../assets/images/337745.jpeg";
-import { ReactComponent as PlayIcon } from "../../assets/icons/play.svg";
-import { EpisodeCardWrapper } from "./style";
 import { useEffect, useState } from "react";
-import EpisodeModal from "../EpisodeModal/EpisodeModal";
 import { styled } from "twin.macro";
 import axios from "axios";
 import { BodyText } from "../../styles/typography";
 import Button from "../Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleInfo,
-  faInfo,
-  faPlay,
-} from "@fortawesome/free-solid-svg-icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { faInfo, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 import Skeleton from "../Skeleton/Skeleton";
 
-interface MovieCardProps {
-  title?: string;
-  url?: string;
-  image?: string;
-  rating?: string;
-}
 export default function AnimeCard({ anime }: any) {
   const [list, setList] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +17,7 @@ export default function AnimeCard({ anime }: any) {
     setIsLoading(true);
     const timer = setTimeout(() => {
       axios
-        .get(`https://gogoanime.consumet.org/anime-details/${anime.animeId}`)
+        .get(`https://gogoanime.consumet.stream/anime-details/${anime.animeId}`)
         .then((response) => setList(response.data));
       setIsLoading(false);
     });
@@ -84,6 +70,7 @@ export default function AnimeCard({ anime }: any) {
 
 export const AnimeCardWrapper = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
   margin: 0px 10px;
   gap: 10px;
@@ -119,5 +106,13 @@ export const AnimeCardWrapper = styled.div`
       opacity: 1;
     }
     border: 1px solid white;
+  }
+  @media screen and (max-width: 768px) {
+    width: 200px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
   }
 `;

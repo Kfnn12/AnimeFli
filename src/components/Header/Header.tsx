@@ -40,24 +40,24 @@ const links: Links[] = [
   },
 ];
 
-export default function DashboardHeader() {
+export default function Header() {
   const {pathname} = useLocation()
   return (
     <div tw="flex relative  w-full  bg-transparent  z-[1000] px-[25px] sm:px-[64px] py-[24px] items-center justify-between">
       <div tw="flex gap-[20px]">
-        <Link to="/" tw="text-orange2 text-2xl">
+        <Link to="/" tw="text-orange2 sm:text-2xl">
           Logo
         </Link>
         {links.map((link, idx) => (
           <NavLink tw="flex" key={idx.toString()} to={link.url}>
             <NavItem active={pathname == link.url}   tw="flex gap-1.5 justify-center items-center cursor-pointer">
               {link.icon}
-              <p>{link.title}</p>
+              <p tw="sm:block hidden">{link.title}</p>
             </NavItem>
           </NavLink>
         ))}
       </div>
-      <div tw="flex gap-2">
+      <div tw="flex gap-2 hidden sm:block">
         <div tw="flex gap-1.5 items-center">
           <FontAwesomeIcon icon={faBell} size="xs" />
           <NormalText>Profile</NormalText>
