@@ -7,6 +7,7 @@ import MovieCard from "../MovieCard/MovieCard";
 import AnimeCard from "../AnimeCard/AnimeCard";
 import EpisodeModal from "../EpisodeModal/EpisodeModal";
 import { H3, H4 } from "../../styles/typography";
+import { getAPI } from "../../api";
 interface RowProps {
   title: string;
   rowID: number;
@@ -16,19 +17,29 @@ interface RowProps {
 export default function Row(props: React.PropsWithChildren<RowProps>) {
   const [movies, setMovies] = useState<any>([]);
   useEffect(() => {
-    if (props.fetchURL != undefined) {
-      axios.get(props.fetchURL).then((response) => {
-        setMovies(response.data);
-      });
-      if (movies) {
-        const container: any = []
-        movies?.map((anime: any, idx: number) => {
-          container[idx] = anime.episodeId
-        } );
+    // if (props.fetchURL != undefined) {
+    //   axios.get(props.fetchURL).then((response) => {
+    //     setMovies(response.data);
+    //   });
+      
+      
+    //   if (movies) {
+    //     const container: any = []
+    //     movies?.map((anime: any, idx: number) => {
+    //       container[idx] = anime.episodeId
+    //     } );
         
+    //   }
+    // }
+    getAPI(props.fetchURL).then((res) => {
+      if (res.status === 200) {
+        setMovies(res.data.results);
+      } else {
+        console.log(res);
       }
-    }
+    });
   }, [props.fetchURL]);
+  // console.log(movies);
   
   
 

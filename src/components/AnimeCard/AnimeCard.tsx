@@ -8,22 +8,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "../Skeleton/Skeleton";
+import { getAPI } from "../../api";
 
 export default function AnimeCard({ anime }: any) {
   const [list, setList] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    setIsLoading(true);
     const timer = setTimeout(() => {
-      axios
-        .get(`https://gogoanime.consumet.stream/anime-details/${anime.animeId}`)
-        .then((response) => setList(response.data));
-      setIsLoading(false);
+      getAPI("info", anime.id).then((res) => {
+        if (res.status === 200) {
+          setList(res.data);
+          // console.log(res.data);
+        } else {
+          console.log(res);
+        }
+      });
     });
     return () => clearTimeout(timer);
   }, []);
-  // console.log(isLoading);
+  console.log(list?.id);
   function watchAnime() {
     console.log(location);
     if (anime.type === "Movie") {
@@ -37,12 +41,12 @@ export default function AnimeCard({ anime }: any) {
       {isLoading && <Skeleton />}
       {!isLoading && (
         <AnimeCardWrapper>
-          <img src={anime.animeImg} alt="alt" />
+          <img src={anime.image} alt="alt" />
 
           <div className="overlay">
             <div tw="h-[35px] truncate whitespace-normal ">
               <BodyText tw="text-[17px] text-orange2">
-                {list?.animeTitle}
+                {anime?.title}
               </BodyText>
             </div>
             <div tw="mt-[20px] flex flex-col gap-[8px]">
@@ -90,7 +94,6 @@ export const AnimeCardWrapper = styled.div`
   .overlay {
     color: #fff;
     position: absolute;
-
     width: 100%;
     height: 100%;
     top: 0;
@@ -105,7 +108,7 @@ export const AnimeCardWrapper = styled.div`
     .overlay {
       opacity: 1;
     }
-    border: 1px solid white;
+    /* border: 1px solid white; */
   }
   @media screen and (max-width: 768px) {
     width: 200px;

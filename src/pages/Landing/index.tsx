@@ -41,21 +41,21 @@ export default function Landing() {
         </div>
         <div>
           <div>
-            <Row title="Recents" rowID={0} fetchURL={requests.fetchRecents} />
+            <Row title="Recents" rowID={0} fetchURL="recent-episodes" />
           </div>
 
           <div>
             <LongRow
               title="Top Airing"
               rowID={2}
-              fetchURL={requests.fetchTopAiring}
+              fetchURL="top-airing"
             />
           </div>
           <div>
             <Row
-              title="Popular today"
+              title="Movie"
               rowID={3}
-              fetchURL={requests.fetchPopular}
+              fetchURL="movie"
             />
           </div>
         </div>

@@ -7,6 +7,7 @@ import MovieCard from "../MovieCard/MovieCard";
 import AnimeCard from "../AnimeCard/AnimeCard";
 import { H3, H4 } from "../../styles/typography";
 import LongAnimeCard from "../LongAnimeCard/LongAnimeCard";
+import { getAPI } from "../../api";
 interface RowProps {
   title: string;
   rowID: number;
@@ -18,13 +19,13 @@ export default function LongRow(props: React.PropsWithChildren<RowProps>) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (props.fetchURL != undefined) {
-      axios.get(props.fetchURL).then((response) => {
-        setMovies(response.data);
-      });
-      if (movies) {
+    getAPI(props.fetchURL).then((res) => {
+      if (res.status === 200) {
+        setMovies(res.data.results);
+      } else {
+        console.log(res);
       }
-    }
+    });
   }, [props.fetchURL]);
   // console.log(movies.length);
 

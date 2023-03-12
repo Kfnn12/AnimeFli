@@ -8,7 +8,7 @@ interface Params {
 
 // post config
 const postConfig: Params = {
-  baseUrl: "https://gogoanime.consumet.org",
+  baseUrl: "https://api.consumet.org/anime/gogoanime",
   headers: {
     Authorization: "",
   },
@@ -17,7 +17,7 @@ const postConfig: Params = {
 
 //config for get request
 const getConfig: Params = {
-  baseUrl: "https://gogoanime.consumet.org",
+  baseUrl: "https://api.consumet.org/anime/gogoanime",
   headers: {
     Authorization: "",
   },
@@ -47,16 +47,17 @@ export const postAPI = async (url: string, data: any): Promise<any> => {
 };
 
 export const getAPI = async (url: string, data?: any): Promise<any> => {
-  return await axios({
-    ...getConfig,
-    url: `${getConfig.baseUrl}/${url}/${data}`,
-  })
+  if (data){
+    return await axios({
+      ...getConfig,
+      url: `${getConfig.baseUrl}/${url}/${data}`,
+    })
     .then((response) => {
       // console.log(response);
       return {
         status: response.status,
         data: response.data,
-      };
+      }; 
     })
     .catch((error) => {
       // console.log(error);
@@ -65,4 +66,25 @@ export const getAPI = async (url: string, data?: any): Promise<any> => {
         data: error.response,
       };
     });
+  }
+  return await axios({
+    ...getConfig,
+    url: `${getConfig.baseUrl}/${url}`,
+  })
+    .then((response) => {
+      // console.log(response);
+      return {
+        status: response.status,
+        data: response.data,
+      }; 
+    })
+    .catch((error) => {
+      // console.log(error);
+      return {
+        status: error.status,
+        data: error.response,
+      };
+    });
+  
+    
 };

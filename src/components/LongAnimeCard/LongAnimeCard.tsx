@@ -14,6 +14,7 @@ import {
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { getAPI } from "../../api";
 
 interface MovieCardProps {
   title?: string;
@@ -26,9 +27,16 @@ export default function LongAnimeCard({ anime, index }: any) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    axios
-      .get(`https://gogoanime.consumet.org/anime-details/${anime.animeId}`)
-      .then((response) => setList(response.data));
+    const timer = setTimeout(() => {
+      getAPI("info", anime.id).then((res) => {
+        if (res.status === 200) {
+          setList(res.data);
+        } else {
+          console.log(res);
+        }
+      });
+    });
+    return () => clearTimeout(timer);
   }, []);
   // console.log(anime);
   function watchAnime(){
@@ -41,13 +49,13 @@ export default function LongAnimeCard({ anime, index }: any) {
         {index + 1}
       </div>
       <LongAnimeCardWrapper onClick={() => setIsOpen(true)}>
-        <img src={anime.animeImg} alt="alt" />
+        <img src={anime.image} alt="alt" />
 
         {list && (
           <div className="overlay">
             <div tw="mt-[10px] truncate whitespace-normal ">
               <BodyText tw="text-[17px] text-orange2">
-                {list?.animeTitle}
+                {list?.title}
               </BodyText>
             </div>
             <div tw="mt-[20px] flex flex-col gap-[8px]">
@@ -108,6 +116,6 @@ const LongAnimeCardWrapper = styled.div`
     .overlay {
       opacity: 1;
     }
-    border: 1px solid white;
+    /* border: 1px solid white; */
   }
 `;
