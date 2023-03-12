@@ -56,13 +56,15 @@ export default function AnimeCard({ anime }: any) {
               </p>
             </div>
             <div tw="flex justify-end gap-2 mt-[8px]">
-              <Button size="small" onClick={watchAnime} variant="icon">
+              <Button size="small"  variant="icon">
                 <a href={anime.id}>
                   <FontAwesomeIcon icon={faPlay} />
                 </a>
               </Button>
               <Button tw="bg-none bg-white" size="small" variant="icon">
-                <FontAwesomeIcon icon={faInfo} />
+              <a href={anime.id}>
+                  <FontAwesomeIcon icon={faInfo} />
+                </a>
               </Button>
             </div>
           </div>

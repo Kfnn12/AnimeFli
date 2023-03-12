@@ -19,7 +19,7 @@ interface PosterProps {
 export default function PosterDetails(props: PosterProps) {
   const navigate = useNavigate();
   return (
-    <div tw=" ml-10 mt-[100px] absolute z-[100] left-0 w-[500px] flex flex-col  ">
+    <div tw=" ml-[12px] sm:ml-[64px] mt-[100px] absolute z-[100] left-0 sm:w-[500px] flex flex-col  ">
       {/* <p tw="text-[40px]"></p> */}
       <H1>{props.title}</H1>
       <div tw="flex flex-col gap-[20px]">
@@ -32,7 +32,7 @@ export default function PosterDetails(props: PosterProps) {
           </div>
         </div>
         <div tw=" whitespace-normal">
-          <BodyText>
+          <BodyText tw="text-[12px]">
             {props.synopsis}
             {/* Senju and Taiju have to rescue a civilian: completely disappeared and
           frozen */}

@@ -46,7 +46,7 @@ export default function HeroPoster() {
       ref.current.style.transition = "all 0.2s ease-in-out";
       ref.current.style.transform = `translateX(-${current}00%)`;
     }
-    getData();
+    // getData();
   }, [current]);
   return (
     <Wrapper>
