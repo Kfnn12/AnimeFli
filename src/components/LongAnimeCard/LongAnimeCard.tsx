@@ -39,8 +39,8 @@ export default function LongAnimeCard({ anime, index }: any) {
     return () => clearTimeout(timer);
   }, []);
   // console.log(anime);
-  function watchAnime(){
-    navigate(anime?.animeId)
+  function watchAnime() {
+    navigate(anime?.animeId);
   }
 
   return (
@@ -54,9 +54,7 @@ export default function LongAnimeCard({ anime, index }: any) {
         {list && (
           <div className="overlay">
             <div tw="mt-[10px] truncate whitespace-normal ">
-              <BodyText tw="text-[17px] text-orange2">
-                {list?.title}
-              </BodyText>
+              <BodyText tw="text-[17px] text-orange2">{list?.title}</BodyText>
             </div>
             <div tw="mt-[20px] flex flex-col gap-[8px]">
               <p tw="text-[12px]">{list?.type}</p>
@@ -66,8 +64,10 @@ export default function LongAnimeCard({ anime, index }: any) {
               </p>
             </div>
             <div tw="flex justify-end gap-2 mt-[8px]">
-              <Button onClick={watchAnime} size="small" variant="icon">
-                <FontAwesomeIcon icon={faPlay} />
+              <Button size="small" variant="icon">
+                <a href={anime.id}>
+                  <FontAwesomeIcon icon={faPlay} />
+                </a>
               </Button>
               <Button tw="bg-none bg-white" size="small" variant="icon">
                 <FontAwesomeIcon icon={faInfo} />

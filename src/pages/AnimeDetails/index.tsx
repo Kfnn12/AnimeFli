@@ -21,7 +21,7 @@ export default function AnimeDetails() {
 
   
   const watcher = streamLink?.Referer;
-  // console.log(watcher);
+  // console.log(watcher) ;
   return (
     <div tw=" flex justify-center flex-col ">
       <div tw="flex justify-between gap-2 mb-5 mx-[64px]">
