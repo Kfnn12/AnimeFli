@@ -36,9 +36,9 @@ export default function Genre() {
     navigate(`/${anime.animeId}`);
   }
   return (
-    <div tw="mx-[64px]">
+    <div tw="mx-[14px]">
       <H1>{genre}</H1>
-      <div tw="grid grid-cols-5 gap-x-3 gap-y-3 mt-[20px]">
+      <div tw="grid grid-cols-2 gap-[20px] mt-[20px] sm:grid-cols-2 md:grid-cols-5">
         {anime.results.map((item: any, idx: Key) => (
           <GenreTitleCard tw=" h-fit" key={idx}>
             <img src={item.image} alt="" />
@@ -67,12 +67,11 @@ export default function Genre() {
 const GenreTitleCard = styled.div`
   display: flex;
   flex-direction: column;
-  /* margin: 0px 10px; */
   gap: 10px;
   overflow: hidden;
   height: 180px;
   cursor: pointer;
-  width: 230px;
+  width: 100%;
   border-radius: 10px;
   text-align: left;
   white-space: normal;

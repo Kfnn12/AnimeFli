@@ -36,7 +36,7 @@ export default function Search() {
     }
   });
   return (
-    <div tw="mx-[64px] ">
+    <div tw="mx-[12px] sm:mx-[64px]">
       <div tw="mb-3 relative">
         <input
           tw="h-[30px] w-full text-grayText text-[14px] focus:outline-0  border-2 border-secondary bg-transparent  p-2 flex items-center justify-center "
@@ -64,7 +64,7 @@ export default function Search() {
         ) : null}
       </div>
       <div tw="flex">
-        <div tw="grid grid-cols-5 gap-x-3.5 gap-y-3">
+        <div tw="grid grid-cols-2 sm:grid-cols-5 gap-x-3.5 gap-y-3">
           {links.map((item: any, idx: Key) => (
             <GenreCards key={idx} onClick={() => setGenre(item.url)}>
               <Link to={item.url}>
