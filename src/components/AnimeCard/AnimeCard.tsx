@@ -32,7 +32,7 @@ export default function AnimeCard({ anime }: any) {
     console.log(location);
     if (anime.type === "Movie") {
     } else {
-      navigate(`/${anime.animeId}`);
+      navigate(`/${anime.id}`);
     }
   }
 

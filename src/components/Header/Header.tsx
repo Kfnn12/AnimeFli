@@ -57,7 +57,7 @@ export default function Header() {
           </NavLink>
         ))}
       </div>
-      <div tw="flex gap-2 hidden sm:block">
+      {/* <div tw="flex gap-2 hidden sm:block">
         <div tw="flex gap-1.5 items-center">
           <FontAwesomeIcon icon={faBell} size="xs" />
           <NormalText>Profile</NormalText>
@@ -69,7 +69,7 @@ export default function Header() {
             alt=""
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

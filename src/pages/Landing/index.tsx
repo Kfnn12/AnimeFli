@@ -53,7 +53,7 @@ export default function Landing() {
           </div>
           <div>
             <Row
-              title="Movie"
+              title="Movies"
               rowID={3}
               fetchURL="movie"
             />
