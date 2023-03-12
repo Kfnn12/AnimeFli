@@ -9,6 +9,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../../components/Button/Button";
 import { faInfo, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { getAPI } from "../../api";
 
 export default function Genre() {
   const [list, setList] = useState<any>();
@@ -19,9 +20,14 @@ export default function Genre() {
   
 
   useEffect(() => {
-    axios
-      .get(`https://gogoanime.consumet.org/anime-details/${anime.animeId}`)
-      .then((response) => setList(response.data));
+    getAPI("info", anime.id).then((res) => {
+      if (res.status === 200) {
+        setList(res.data);
+        // console.log(res.data);
+      } else {
+        console.log(res);
+      }
+    });
   }, []);
   console.log(list);
   
@@ -33,17 +39,18 @@ export default function Genre() {
     <div tw="mx-[64px]">
       <H1>{genre}</H1>
       <div tw="grid grid-cols-5 gap-x-3 gap-y-3 mt-[20px]">
-        {anime.map((item: any, idx: Key) => (
+        {anime.results.map((item: any, idx: Key) => (
           <GenreTitleCard tw=" h-fit" key={idx}>
-            <img src={item.animeImg} alt="" />
+            <img src={item.image} alt="" />
               <div className="overlay">
                 <div tw="h-[35px] truncate whitespace-normal ">
                   <BodyText tw="text-[17px] text-orange2">
-                    {item.animeTitle}
+                    {item.title}
                   </BodyText>
                 </div>
                 <div tw="flex justify-end gap-2 mt-[8px]">
-                  <Button size="small" onClick={() => navigate(`/${item.animeId}`)} variant="icon">
+                  <Button size="small" onClick={() => navigate(`/${item.id}`)} variant="icon">
+                    <a href=""></a>
                     <FontAwesomeIcon icon={faPlay} />
                   </Button>
                   <Button tw="bg-none bg-white" size="small" variant="icon">

@@ -4,6 +4,7 @@ import { Key, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "twin.macro";
 import { styled } from "twin.macro";
+import { getAPI } from "../../api";
 import AnimeCard from "../../components/AnimeCard/AnimeCard";
 import { BodyText } from "../../styles/typography";
 import links from "./links";
@@ -15,9 +16,14 @@ export default function Search() {
 
   //get search results
   useEffect(() => {
-    axios
-      .get(`https://gogoanime.consumet.org/search?keyw=${keyword}`)
-      .then((res) => setSearchResults(res.data));
+    getAPI(`${keyword}?page=${1}`).then((res) => {
+      if (res.status === 200) {
+        setSearchResults(res.data.results);
+        // console.log(res.data);
+      } else {
+        console.log(res);
+      }
+    });
   }, [keyword]);
   console.log(searchResults);
 
@@ -41,15 +47,16 @@ export default function Search() {
         />
         {keyword ? (
           <div tw="absolute w-full mt-[10px] max-h-[400px] overflow-y-scroll z-[100] bg-primary border-2 border-secondary border-solid ">
-            {searchResults.map((item: any, idx: Key) => (
+            {searchResults?.map((item: any, idx: Key) => (
               <div
                 key={idx}
                 tw="w-full flex items-center gap-3 h-[80px] hover:bg-secondary cursor-pointer p-[15px]"
-                onClick={() => navigate(`/${item.animeId}`)}
+                onClick={() => navigate(`/${item.id}`)}
               >
-                <img tw="h-full w-[50px]" src={item.animeImg} alt="" />
-                <div tw="flex flex-col">
-                  <p tw="text-orange2">{item.animeTitle}</p>
+                <img tw="h-full w-[50px]" src={item.image} alt="" />
+                <div tw="flex flex-col justify-between  h-full ">
+                  <p tw="text-orange2">{item.title}</p>
+                  <p tw="text-[12px] text-grayText">{item.releaseDate}</p>
                 </div>
               </div>
             ))}

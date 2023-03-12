@@ -39,9 +39,9 @@ export default function Player() {
 
   // get streaming urls
   useEffect(() => {
-    getAPI("vidcdn/watch", `${id}-episode-${episode}`).then((res) => {
+    getAPI("watch", `${id}-episode-${episode}`).then((res) => {
       if (res.status === 200) {
-        setStreamLink(res.data);
+        setStreamLink(res.data.headers);
       }
     });
   }, [episode]);
@@ -81,7 +81,7 @@ export default function Player() {
           <div>
             <H4>Episodes</H4>
             <EpisodesGrid>
-              {anime?.episodesList?.map((item: any, idx: number) => (
+              {anime?.episodes?.map((item: any, idx: number) => (
                 <button
                   tw="p-2 bg-secondary text-[12px]  hover:opacity-[0.7]  flex justify-center items-center w-[30px] h-[30px]"
                   key={idx}
@@ -95,7 +95,7 @@ export default function Player() {
         </div>
       </div>
       <div>
-        <Row title="Similar" rowID={0} fetchURL={requests.fetchTopAiring} />
+        <Row title="Similar" rowID={0} fetchURL="top-airing" />
       </div>
     </div>
   );

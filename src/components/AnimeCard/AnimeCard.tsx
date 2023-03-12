@@ -27,7 +27,7 @@ export default function AnimeCard({ anime }: any) {
     });
     return () => clearTimeout(timer);
   }, []);
-  console.log(list?.id);
+  // console.log(list?.id);
   function watchAnime() {
     console.log(location);
     if (anime.type === "Movie") {
@@ -45,9 +45,7 @@ export default function AnimeCard({ anime }: any) {
 
           <div className="overlay">
             <div tw="h-[35px] truncate whitespace-normal ">
-              <BodyText tw="text-[17px] text-orange2">
-                {anime?.title}
-              </BodyText>
+              <BodyText tw="text-[17px] text-orange2">{anime?.title}</BodyText>
             </div>
             <div tw="mt-[20px] flex flex-col gap-[8px]">
               <p tw="text-[12px]">{list?.type}</p>
@@ -59,7 +57,9 @@ export default function AnimeCard({ anime }: any) {
             </div>
             <div tw="flex justify-end gap-2 mt-[8px]">
               <Button size="small" onClick={watchAnime} variant="icon">
-                <FontAwesomeIcon icon={faPlay} />
+                <a href={anime.id}>
+                  <FontAwesomeIcon icon={faPlay} />
+                </a>
               </Button>
               <Button tw="bg-none bg-white" size="small" variant="icon">
                 <FontAwesomeIcon icon={faInfo} />

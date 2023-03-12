@@ -31,12 +31,12 @@ export default function AnimeDetails() {
           </div>
           <div tw="flex gap-2">
             <div tw="w-[260px] h-[408px]">
-              <img tw="h-[100%] w-[100%]" src={anime.animeImg} alt="" />
+              <img tw="h-[100%] w-[100%]" src={anime.image} alt="" />
             </div>
             <div tw="max-w-[350px] flex flex-col gap-[10px] text-[12px]">
               <p>
                 <span tw="text-orange2">Name: </span>
-                {anime.animeTitle}
+                {anime.title}
               </p>
               <p>
                 <span tw="text-orange2">Type: </span>
@@ -44,7 +44,7 @@ export default function AnimeDetails() {
               </p>
               <p>
                 <span tw="text-orange2">Plot Summary: </span>
-                {anime.synopsis}
+                {anime.description}
               </p>
               <p>
                 <span tw="text-orange2">Genre: </span>
@@ -52,7 +52,7 @@ export default function AnimeDetails() {
               </p>
               <p>
                 <span tw="text-orange2">Released: </span>
-                {anime.releasedDate}
+                {anime.releaseDate}
               </p>
               <p>
                 <span tw="text-orange2">Status: </span>
@@ -60,7 +60,7 @@ export default function AnimeDetails() {
               </p>
               <p>
                 <span tw="text-orange2">Other Names: </span>
-                {anime.otherNames}
+                {anime.otherName}
               </p>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function AnimeDetails() {
           <div>
             <H4>Episodes</H4>
             <EpisodesGrid>
-              {anime?.episodesList?.map((item: any, idx: number) => (
+              {anime?.episodes?.map((item: any, idx: number) => (
                 <button
                   tw="p-2 bg-secondary text-[12px]  hover:opacity-[0.7]  w-[fit] flex justify-center items-center w-[30px] h-[30px]"
                   key={idx}
@@ -83,7 +83,7 @@ export default function AnimeDetails() {
         </div>
       </div>
       <div>
-        <Row title="Similar" rowID={0} fetchURL={requests.fetchTopAiring} />
+        <Row title="Similar" rowID={0} fetchURL="top-airing" />
       </div>
     </div>
   );
