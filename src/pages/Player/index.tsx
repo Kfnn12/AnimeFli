@@ -47,12 +47,12 @@ export default function Player() {
   }, [episode]);
   return (
     <div tw=" flex justify-center flex-col ">
-      <p tw="mx-[64px] mb-4 p-2 bg-orange2">
+      <p tw="mx-[14px] sm:mx-[64px] mb-4 p-2 bg-orange2">
         {id} episode {episode}
       </p>
-      <div tw="flex justify-between gap-2 mb-5 mx-[64px]">
+      <div tw="flex flex-col xl:flex-row justify-between gap-y-8 mb-5 mx-[14px] sm:mx-[64px]">
         <div tw="flex flex-col justify-center items-center">
-          <div tw="w-[686px] h-[385.875px] ">
+          <div tw="w-full sm:w-[686px] h-[290px] sm:h-[385.875px] ">
             <div tw=" w-full h-full ">
               {streamLink.Referer ? (
                 <iframe
@@ -78,16 +78,16 @@ export default function Player() {
           </div>
         </div>
         <div tw="flex justify-center ">
-          <div>
+          <div tw="w-full">
             <H4>Episodes</H4>
             <EpisodesGrid>
               {anime?.episodes?.map((item: any, idx: number) => (
                 <button
-                  tw="p-2 bg-secondary text-[12px]  hover:opacity-[0.7]  flex justify-center items-center w-[30px] h-[30px]"
+                  tw="p-2 bg-secondary text-[10px]  hover:opacity-[0.7]  flex justify-center items-center  h-[30px]"
                   key={idx}
                   onClick={() => changeEpisode(idx + 1)}
                 >
-                  {idx + 1}
+                  EP {idx + 1}
                 </button>
               ))}
             </EpisodesGrid>
@@ -102,11 +102,15 @@ export default function Player() {
 }
 
 const EpisodesGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
   margin-top: 20px;
-  width: 400px;
+  /* min-width: 400px; */
+  width: 100%;
   gap: 10px;
   max-height: 400px;
   overflow-y: auto;
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 `;
