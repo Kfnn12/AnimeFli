@@ -21,14 +21,13 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
     //   axios.get(props.fetchURL).then((response) => {
     //     setMovies(response.data);
     //   });
-      
-      
+
     //   if (movies) {
     //     const container: any = []
     //     movies?.map((anime: any, idx: number) => {
     //       container[idx] = anime.episodeId
     //     } );
-        
+
     //   }
     // }
     getAPI(props.fetchURL).then((res) => {
@@ -40,8 +39,6 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
     });
   }, [props.fetchURL]);
   // console.log(movies);
-  
-  
 
   const slideLeft = () => {
     var slider: any = document.getElementById("slider" + props.rowID);
@@ -54,10 +51,10 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
 
   return (
     <Wrapper>
-      <H4 tw="mx-[27px] py-2">{props.title}</H4>
+      <H4 tw="mx-[12px] sm:mx-[27px] py-2">{props.title}</H4>
       <div tw="relative">
         <button
-          tw="absolute opacity-0  h-full w-[40px] z-10 left-[0px] bottom-[0px]  rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[5px] bg-[rgba(69, 71, 82, 0.3)]"
+          tw="hidden absolute opacity-0  h-full w-[40px] z-10 left-[0px] bottom-[0px]  rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[5px] bg-[rgba(69, 71, 82, 0.3)]"
           onClick={slideLeft}
         >
           <ArrowLeft />
@@ -67,14 +64,14 @@ export default function Row(props: React.PropsWithChildren<RowProps>) {
           id={"slider" + props.rowID}
           tw="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth  relative"
         >
-          <div tw="w-full h-full ml-[18px]  whitespace-nowrap scroll-smooth  relative">
+          <div tw="w-full h-full sm:ml-[18px]  whitespace-nowrap scroll-smooth  relative">
             {movies?.map((anime: any, idx: number) => (
               <AnimeCard key={idx} anime={anime} />
             ))}
           </div>
         </div>
         <button
-          tw="absolute  h-full w-[40px]  right-0 bottom-[0px] opacity-0 rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[5px] bg-[rgba(69, 71, 82, 0.3)]"
+          tw="hidden absolute  h-full w-[40px]  right-0 bottom-[0px] opacity-0 rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[5px] bg-[rgba(69, 71, 82, 0.3)]"
           onClick={slideRight}
         >
           <ArrowRight />

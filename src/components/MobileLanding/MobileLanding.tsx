@@ -21,8 +21,9 @@ export default function MobileLanding() {
           </a>
         </Button>
         <Button variant="outline">
-          <a href="chainsaw-man">
-            <FontAwesomeIcon icon={faCircleInfo} /> More Info
+          <a href="chainsaw-man" tw="flex gap-1">
+            <FontAwesomeIcon icon={faCircleInfo} />
+            <p>More Info</p> 
           </a>
         </Button>
       </div>

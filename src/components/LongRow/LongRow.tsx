@@ -40,11 +40,11 @@ export default function LongRow(props: React.PropsWithChildren<RowProps>) {
 
   return (
     <Wrapper>
-      <H4 tw="mx-[27px] py-2">{props.title}</H4>
+      <H4 tw="mx-[12px] sm:mx-[27px] py-2">{props.title}</H4>
       {/* <p tw="py-5 mx-[27px] text-[#5A6073] font-medium">{props.title}</p> */}
       <div tw="relative">
         <button
-          tw="absolute h-full opacity-0 pt-[10px]  w-[40px] z-10 left-[0px] bottom-[0px]  rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
+          tw="hidden absolute h-full opacity-0 pt-[10px]  w-[40px] z-10 left-[0px] bottom-[0px]  rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
           onClick={slideLeft}
         >
           <ArrowLeft />
@@ -54,7 +54,7 @@ export default function LongRow(props: React.PropsWithChildren<RowProps>) {
           id={"slider" + props.rowID}
           tw="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth  relative"
         >
-          <div tw="w-full h-full ml-[18px]  whitespace-nowrap scroll-smooth  relative">
+          <div tw="w-full h-full sm:ml-[18px]  whitespace-nowrap scroll-smooth  relative">
             {movies?.map((anime: any, idx: number) => (
               <LongAnimeCard
                 index={idx}
@@ -66,7 +66,7 @@ export default function LongRow(props: React.PropsWithChildren<RowProps>) {
           </div>
         </div>
         <button
-          tw="absolute h-full w-[40px] right-[0px] bottom-[0px] opacity-0 rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
+          tw="hidden absolute h-full w-[40px] right-[0px] bottom-[0px] opacity-0 rounded-lg  hover:opacity-100 flex justify-center items-center backdrop-blur-[10px] bg-[rgba(69, 71, 82, 0.5)]"
           onClick={slideRight}
         >
           <ArrowRight />
