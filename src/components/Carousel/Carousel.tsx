@@ -122,4 +122,7 @@ const StyledCarousel = styled.div`
     background-color: gray;
     color: #fff;
   }
+  @media screen and (max-width: 400px) {
+   height : 430px;
+  }
 `;

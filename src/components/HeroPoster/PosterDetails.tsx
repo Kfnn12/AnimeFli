@@ -31,14 +31,12 @@ export default function PosterDetails(props: PosterProps) {
             <p tw="text-[12px]">Action</p>
           </div>
         </div>
-        <div tw=" whitespace-normal">
-          <BodyText tw="text-[12px]">
+        <div tw="hidden sm:block whitespace-normal">
+          <BodyText tw="text-[12px] sm:text-[16px]">
             {props.synopsis}
-            {/* Senju and Taiju have to rescue a civilian: completely disappeared and
-          frozen */}
           </BodyText>
         </div>
-        <div>
+        <div tw="hidden sm:block">
           <H3>New Series!</H3>
         </div>
         <div tw="flex gap-[20px]">

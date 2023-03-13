@@ -13,55 +13,12 @@ import SlideshowImages from "./SlideshowImages";
 const TOTAL_SLIDES = 3; // n-1 in Array
 const images = [Poster1, Poster2, Poster3, Poster4]
 export default function HeroPoster() {
-  const [current, setCurrent] = useState(0);
-  const [data, setData] = useState([]);
-  const ref = useRef<any>(null);
 
-  const next = () => {
-    if (current >= TOTAL_SLIDES) {
-      setCurrent(0);
-    } else setCurrent(current + 1);
-  };
-
-  const prev = () => {
-    if (current === 0) return;
-    else setCurrent(current - 1);
-  };
-  const getData = () =>
-    getAPI("recent-release", "").then((res) => {
-      if (res.status === 200) {
-        setData(res.data);
-        console.log(data);
-      } else {
-        console.log(res);
-      }
-    });
-
-  // const desired = (e: any) => {
-  //   setCurrent(Number(e.target.id));
-  // };
-
-  useEffect(() => {
-    if (ref.current != null) {
-      ref.current.style.transition = "all 0.2s ease-in-out";
-      ref.current.style.transform = `translateX(-${current}00%)`;
-    }
-    // getData();
-  }, [current]);
   return (
     <Wrapper>
-      <div className="frame">
-        <div className="box-container" ref={ref}>
-          {data.map((item, idx) => (
-            <SlideshowImages image={images} anime={item} key={idx} />
-          ))}
-        </div>
+      <div>
+        
       </div>
-      {/* <div className="button-container">
-        <div className="button" onClick={next}>
-          <ArrowRight />
-        </div>
-      </div> */}
     </Wrapper>
   );
 }
