@@ -8,12 +8,13 @@ import Routes from "./routes";
 import "./App.css";
 import routesObject from "./routes/routes";
 import ViewportProvider from "./context/viewportContext";
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 function App() {
   const router = createBrowserRouter(routesObject);
   return (
     <>
       <ViewportProvider>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<LoadingScreen/>}>
           <RouterProvider router={router} />
         </React.Suspense>
       </ViewportProvider>
