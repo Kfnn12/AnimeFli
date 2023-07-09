@@ -14,11 +14,11 @@ export default function AnimeDetails() {
   const navigate = useNavigate();
   console.log(anime);
 
-  function changeEpisode(idx: number) {
+  function goToEpisode(idx: number) {
     navigate(`/${id}/${idx}`);
   }
 
-  const watcher = streamLink?.Referer;
+  // const watcher = streamLink?.Referer;
   // console.log(watcher) ;
   return (
     <div tw=" flex justify-center flex-col ">
@@ -71,7 +71,7 @@ export default function AnimeDetails() {
                 <button
                   tw="p-2 bg-secondary text-[10px]  hover:opacity-[0.7]  flex justify-center items-center  h-[30px]"
                   key={idx}
-                  onClick={() => changeEpisode(idx + 1)}
+                  onClick={() => goToEpisode(idx + 1)}
                 >
                   EP {idx + 1}
                 </button>

@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <ViewportProvider>
-        <React.Suspense fallback={<LoadingScreen/>}>
+        <React.Suspense fallback={<LoadingScreen />}>
           <RouterProvider router={router} />
         </React.Suspense>
       </ViewportProvider>

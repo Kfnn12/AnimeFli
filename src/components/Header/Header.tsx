@@ -33,11 +33,6 @@ const links: Links[] = [
       <FontAwesomeIcon color="#d7d7d7" icon={faMagnifyingGlass} size="xs" />
     ), 
   },
-  {
-    title: "Lists",
-    url: "/lists",
-    icon: <FontAwesomeIcon icon={faListCheck} size="xs" />,
-  },
 ];
 
 export default function Header() {

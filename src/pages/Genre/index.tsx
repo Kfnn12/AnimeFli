@@ -36,7 +36,7 @@ export default function Genre() {
     navigate(`/${anime.animeId}`);
   }
   return (
-    <div tw="mx-[14px]">
+    <div tw="mx-[14px] sm:mx-[64px]">
       <H1>{genre}</H1>
       <div tw="grid grid-cols-2 gap-[20px] mt-[20px] sm:grid-cols-2 md:grid-cols-5">
         {anime.results.map((item: any, idx: Key) => (
@@ -49,11 +49,10 @@ export default function Genre() {
                   </BodyText>
                 </div>
                 <div tw="flex justify-end gap-2 mt-[8px]">
-                  <Button size="small" onClick={() => navigate(`/${item.id}`)} variant="icon">
-                    <a href=""></a>
+                  <Button size="small" onClick={() => navigate(`/${item.id}/1`)} variant="icon">
                     <FontAwesomeIcon icon={faPlay} />
                   </Button>
-                  <Button tw="bg-none bg-white" size="small" variant="icon">
+                  <Button tw="bg-none bg-white" size="small" onClick={() => navigate(`/${item.id}`)} variant="icon">
                     <FontAwesomeIcon icon={faInfo} />
                   </Button>
                 </div>
