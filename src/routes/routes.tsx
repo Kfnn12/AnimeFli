@@ -20,14 +20,14 @@ const routesObject: RouteObject[] = [
       {
         path: ":id",
         loader: async ({ params, request }) => {
-          return axios.get(`https://api.consumet.org/anime/gogoanime/info/${params.id}`).then((res) => res.data)
+          return axios.get(`https://animxer-api-bids.vercel.app/anime/gogoanime/info/${params.id}`).then((res) => res.data)
         },
         element: <AnimeDetailsPage />,
       },
       {
         path: ":id/:episode",
         loader: async ({ params, request }) => {
-          return axios.get(`https://api.consumet.org/anime/gogoanime/info/${params.id}`).then((res) => res.data)
+          return axios.get(`https://animxer-api-bids.vercel.app/anime/gogoanime/info/${params.id}`).then((res) => res.data)
         },
         element: <PlayerPage />,
       },
@@ -40,7 +40,7 @@ const routesObject: RouteObject[] = [
         path: "search/:genre",
         element: <GenrePage/>,
         loader: async ({ params, request }) => {
-          return axios.get(`https://api.consumet.org/anime/gogoanime/genre/${params.genre}`).then((res) => res.data)
+          return axios.get(`https://animxer-api-bids.vercel.app/anime/gogoanime/genre/${params.genre}`).then((res) => res.data)
         },
 
       }
