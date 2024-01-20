@@ -8,7 +8,7 @@ interface Params {
 
 // post config
 const postConfig: Params = {
-  baseUrl: "https://api.consumet.org/anime/gogoanime",
+  baseUrl: "https://animxer-api-bids.vercel.app/anime/gogoanime",
   headers: {
     Authorization: "",
   },
@@ -17,7 +17,7 @@ const postConfig: Params = {
 
 //config for get request
 const getConfig: Params = {
-  baseUrl: "https://api.consumet.org/anime/gogoanime",
+  baseUrl: "https://animxer-api-bids.vercel.app/anime/gogoanime",
   headers: {
     Authorization: "",
   },
